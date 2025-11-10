@@ -7,7 +7,7 @@ export default function Contact() {
       <h1 className="text-4xl font-bold mb-6">Le planning des entrainements</h1>
       <div className="contact-info bg-custom-gray rounded-lg p-8">
         <Image
-        src="/images/exterieur_salle.jpeg"
+        src="/images/planning 25-26.png"
         alt="Extérieur de la salle"
         width={400}
         height={300}
