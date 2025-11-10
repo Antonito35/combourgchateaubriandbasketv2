@@ -2,7 +2,6 @@ import Stripe from "stripe"
 import { buffer } from "micro"
 import { sendConfirmationEmail } from "../../utils/emailService"
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
 
 export const config = {
@@ -12,6 +11,13 @@ export const config = {
 }
 
 export default async function handler(req, res) {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    res.status(500).json({ message: "STRIPE_SECRET_KEY not set in environment" })
+    return
+  }
+
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+
   if (req.method === "POST") {
     const buf = await buffer(req)
     const sig = req.headers["stripe-signature"]

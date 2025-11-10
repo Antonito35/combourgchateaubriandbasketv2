@@ -1,11 +1,16 @@
 import nodemailer from "nodemailer"
 import Stripe from "stripe"
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
-
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const { sessionId } = req.body
+
+    if (!process.env.STRIPE_SECRET_KEY) {
+      res.status(500).json({ message: "STRIPE_SECRET_KEY not set in environment" })
+      return
+    }
+
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
     try {
       // Récupérer les détails de la session Stripe

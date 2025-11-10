@@ -14,55 +14,77 @@ export default function ProductCard({ product, addToCart }) {
       alert("Veuillez sélectionner une couleur et une taille.")
       return
     }
-    if (flocking && flocking.length !== 2) {
-      alert("Le floquage doit contenir exactement 2 lettres.")
+    if (!flocking || flocking.trim().length !== 2) {
+      alert("Le floquage (initiales) est obligatoire et doit contenir exactement 2 lettres.")
       return
     }
-    const flockingPrice = flocking ? 2 : 0
-    addToCart(product, color, size, flocking, flockingPrice)
+    addToCart(product, color, size, flocking)
   }
 
   return (
-    <div className="border p-4 rounded-lg bg-custom-gray">
-      <ImageZoom src={product.image} />
+    <div className="p-6 rounded-xl shadow-lg transform transition hover:-translate-y-1" style={{ background: 'linear-gradient(180deg,#2f4358 0%, #253444 100%)' }}>
+      <div className="text-left">
+        <div className="mb-3 rounded-md overflow-hidden bg-white/5 p-3 flex items-center justify-center">
+          <ImageZoom src={product.image} />
+        </div>
 
-      <h3 className="text-xl font-semibold mt-2">{product.name}</h3>
-      <p className="text-lg">Prix : {product.price}€</p>
+        <h3 className="text-lg font-semibold mt-2 text-white">{product.name}</h3>
+        <p className="text-sm text-gray-200">Prix : {product.price}€</p>
+      </div>
       <select
-        className="mt-2 w-full p-2 bg-custom-blue text-white border border-white rounded"
+        className="mt-3 w-full p-3 bg-transparent text-white border border-gray-500 rounded text-base"
         value={color}
         onChange={(e) => setColor(e.target.value)}
       >
         <option value="">Choisir une couleur</option>
-        <option value="Blanc">Blanc</option>
-        <option value="Noir">Noir</option>
-        <option value="Rouge">Rouge</option>
+        {(product.colors || ["Blanc", "Noir"]).map((c) => (
+          <option key={c} value={c}>
+            {c}
+          </option>
+        ))}
       </select>
+      {/* visual swatch for selected color */}
+      {color && (
+        <div className="mt-2 flex items-center gap-2">
+          <span className="text-sm">Couleur sélectionnée :</span>
+          <span
+            className="w-6 h-6 rounded-full inline-block"
+            style={{
+              backgroundColor: color.toLowerCase() === 'blanc' ? '#ffffff' : color.toLowerCase() === 'noir' ? '#000000' : color,
+              border: color.toLowerCase() === 'blanc' ? '1px solid #ccc' : '1px solid rgba(0,0,0,0.2)'
+            }}
+            aria-hidden
+          />
+          <span className="text-sm">{color}</span>
+        </div>
+      )}
       <select
-        className="mt-2 w-full p-2 bg-custom-blue text-white border border-white rounded"
+        className="mt-3 w-full p-3 bg-transparent text-white border border-gray-500 rounded text-base"
         value={size}
         onChange={(e) => setSize(e.target.value)}
       >
         <option value="">Choisir une taille</option>
-        <option value="S">S</option>
-        <option value="M">M</option>
-        <option value="L">L</option>
-        <option value="XL">XL</option>
+        {(product.sizes || ["6-8 ans", "8-10 ans", "10-12 ans", "S", "M", "L", "XL"]).map((s) => (
+          <option key={s} value={s}>
+            {s}
+          </option>
+        ))}
       </select>
       <div className="mt-2">
-        <label className="block">Floquage (2 lettres max) :</label>
+        <label className="block">Floquage (initiales, 2 lettres) — obligatoire :</label>
         <input
           type="text"
           maxLength={2}
           value={flocking}
-          onChange={(e) => setFlocking(e.target.value.toUpperCase())}
-          className="w-full border rounded px-2 py-1 bg-custom-blue text-white"
+          onChange={(e) => setFlocking(e.target.value.toUpperCase().replace(/[^A-Z]/g, ""))}
+          className="w-full border rounded px-3 py-2 bg-transparent text-white border-gray-500 text-lg"
+          placeholder="Ex: AB"
         />
-        {flocking && <p className="text-sm mt-1">+2€ pour le floquage</p>}
+        <p className="text-sm mt-1">Floquage inclus — initiales obligatoires</p>
       </div>
       <button
         onClick={handleAddToCart}
-        className="mt-4 bg-custom-blue text-white px-4 py-2 rounded hover:bg-blue-700 w-full"
+        className="mt-4 bg-yellow-500 text-black px-5 py-3 rounded hover:bg-yellow-600 w-full font-semibold text-lg"
       >
         Ajouter au panier
       </button>

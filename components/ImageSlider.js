@@ -4,9 +4,9 @@ import Image from "next/image"; // Importation du composant optimisé de Next.js
 
 const images = [
   "/images/U18M3.jpeg",
-  "/images/SF1.JPG",
+  "/images/coach25-26.jpg",
   "/images/SM2.JPG",
-  "/images/img_index.png",
+  "/images/SM1Grande.jpg",
 ];
 
 const ImageSlider = () => {

@@ -1,8 +1,13 @@
 import Stripe from "stripe"
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
-
 export default async function handler(req, res) {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    res.status(500).json({ statusCode: 500, message: "STRIPE_SECRET_KEY not set in environment" })
+    return
+  }
+
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+
   if (req.method === "POST") {
     try {
       const { cart, customerInfo } = req.body
