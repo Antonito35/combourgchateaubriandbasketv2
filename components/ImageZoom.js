@@ -64,10 +64,15 @@ export default function ImageZoom({ src, alt = "Image", zoomWidth = 1920, zoomHe
           <div
             // Conteneur centré : limité en largeur/hauteur pour que le backdrop reste cliquable
             className="relative flex items-center justify-center"
-            style={{ maxWidth: '1100px', maxHeight: 'calc(100vh - 80px)', width: '100%' }}
+            style={{ maxWidth: '900px', maxHeight: 'calc(100vh - 120px)', width: '100%' }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="absolute top-2 right-2 p-2 text-white cursor-pointer" onClick={closeZoom}>
+            <button
+              type="button"
+              onClick={closeZoom}
+              aria-label="Fermer l'image"
+              className="absolute top-2 right-2 z-50 p-2 bg-black/40 hover:bg-black/60 rounded text-white"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -82,7 +87,7 @@ export default function ImageZoom({ src, alt = "Image", zoomWidth = 1920, zoomHe
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
-            </div>
+            </button>
             <div className="flex flex-col items-center" style={{ width: '100%' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', position: 'relative' }}>
                 {/* Prev button inside modal */}
@@ -99,18 +104,21 @@ export default function ImageZoom({ src, alt = "Image", zoomWidth = 1920, zoomHe
                   </button>
                 )}
 
-                    <Image
-                      src={currentSrc}
-                      alt={alt}
-                      // reduce modal max size so even small images are not blown up too much
-                      width={Math.min(zoomWidth, 900)}
-                      height={Math.min(zoomHeight, 700)}
-                      style={{ maxWidth: '100%', maxHeight: 'calc(100vh - 120px)', objectFit: 'contain' }}
-                      onError={() => {
-                        if (currentSrc !== "/images/image.png") setCurrentSrc("/images/image.png")
-                      }}
-                      onClick={(e) => e.stopPropagation()}
-                    />
+                    <div className="w-full flex justify-center">
+                      <div style={{ maxWidth: '100%', width: '100%', textAlign: 'center' }}>
+                        <Image
+                          src={currentSrc}
+                          alt={alt}
+                          width={Math.min(zoomWidth, 900)}
+                          height={Math.min(zoomHeight, 700)}
+                          style={{ maxWidth: '90vw', maxHeight: '70vh', objectFit: 'contain' }}
+                          onError={() => {
+                            if (currentSrc !== "/images/image.png") setCurrentSrc("/images/image.png")
+                          }}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      </div>
+                    </div>
 
                 {/* Next button inside modal */}
                 {onNext && (

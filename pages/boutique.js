@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
 import Layout from "../components/Layout";
 import ProductCard from "../components/ProductCard";
@@ -109,6 +109,40 @@ export default function Boutique() {
   // Dédupliquer par id (prévention en cas d'entrée dupliquée)
   const uniqueProducts = Array.from(new Map(products.map((p) => [p.id, p])).values())
   const [selectedCategory, setSelectedCategory] = useState("all")
+  // Simple client-side cart state
+  const [cart, setCart] = useState([])
+  const cartRef = useRef(null)
+  // control cart visibility on small screens
+  const [cartVisible, setCartVisible] = useState(false)
+
+  const addToCart = (product, color, size, flocking) => {
+    const key = `${product.id}::${color}::${size}::${flocking}`
+    setCart((prev) => {
+      const existing = prev.find((it) => it.key === key)
+      if (existing) {
+        return prev.map((it) => it.key === key ? { ...it, qty: it.qty + 1 } : it)
+      }
+      const image = (product.images && product.images[0]) || product.image || ''
+      return [...prev, { key, productId: product.id, name: product.name, color, size, flocking, qty: 1, price: product.price, image }]
+    })
+    // show cart on mobile and scroll to the cart on the page
+    setCartVisible(true)
+    // wait a tick for DOM updates then scroll
+    setTimeout(() => {
+      if (cartRef.current) {
+        cartRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      } else {
+        // fallback: scroll to top of page area
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+    }, 120)
+  }
+
+  const removeFromCart = (key) => {
+    setCart((prev) => prev.filter((it) => it.key !== key))
+  }
+
+  const cartTotal = cart.reduce((s, it) => s + (it.price || 0) * (it.qty || 1), 0)
 
   const categories = [
     { key: "all", label: "Tous" },
@@ -128,6 +162,15 @@ export default function Boutique() {
 
       <div className="w-full">
         <div className="mx-auto max-w-6xl px-6">
+          {/* Mobile: button to show/hide cart so it doesn't occupy full page */}
+          <div className="mb-4 lg:hidden text-right">
+            <button
+              onClick={() => setCartVisible((v) => !v)}
+              className="inline-block px-4 py-2 bg-green-600 text-white rounded"
+            >
+              {cartVisible ? 'Masquer le panier' : `Voir le panier (${cart.length})`}
+            </button>
+          </div>
           <div className="grid grid-cols-12 gap-6">
             {/* Left: products area (takes 8 columns) */}
             <div className="col-span-12 lg:col-span-8">
@@ -149,7 +192,7 @@ export default function Boutique() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {filteredProducts.map((product) => (
                   <div key={product.id}>
-                    <ProductCard product={product} />
+                    <ProductCard product={product} addToCart={addToCart} />
                   </div>
                 ))}
               </div>
@@ -157,9 +200,34 @@ export default function Boutique() {
 
             {/* Right: cart sidebar (takes 4 columns) */}
             <aside className="col-span-12 lg:col-span-4">
-              <div className="cart-sidebar border border-gray-500 rounded-lg h-full">
-                <h3 className="text-xl font-semibold text-white mb-4 text-center">Votre panier</h3>
-                <div className="text-sm text-gray-300 text-center">Votre panier est vide.</div>
+              <div className="cart-sidebar border border-gray-500 rounded-lg p-4 max-h-[70vh] overflow-y-auto">
+                {/* On small screens, hide content unless cartVisible is true */}
+                <div className={`${cartVisible ? 'block' : 'hidden'} lg:block`}>
+                  <h3 className="text-xl font-semibold text-white mb-4 text-center">Votre panier</h3>
+                  {cart.length === 0 ? (
+                    <div className="text-sm text-gray-300 text-center">Votre panier est vide.</div>
+                  ) : (
+                    <div className="space-y-3">
+                      {cart.map((it) => (
+                        <div key={it.key} className="flex items-center gap-3 bg-[#1b1b1b] p-2 rounded">
+                          {it.image && <img src={it.image} alt={it.name} className="w-16 h-16 object-contain rounded" />}
+                          <div className="flex-1 text-left">
+                            <div className="font-semibold">{it.name}</div>
+                            <div className="text-sm text-gray-300">{it.color} • {it.size} • {it.flocking}</div>
+                            <div className="text-sm text-gray-200">{it.qty} × {it.price}€</div>
+                          </div>
+                          <div className="text-right">
+                            <div className="font-semibold">{(it.price * it.qty).toFixed(2)}€</div>
+                            <button onClick={() => removeFromCart(it.key)} className="text-sm text-red-500 mt-2">Retirer</button>
+                          </div>
+                        </div>
+                      ))}
+                      <div className="pt-2 border-t border-gray-600 text-right">
+                        <div className="text-lg font-bold">Total: {cartTotal.toFixed(2)}€</div>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </aside>
           </div>
