@@ -399,3 +399,47 @@ footer p {
     height: 100px;
   }
 }
+
+/* Boutique / Product card styles */
+.product-card {
+  background-color: var(--custom-gray); /* use site gray */
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 1rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.product-card .mb-3 {
+  background: rgba(255,255,255,0.03);
+}
+.product-card select,
+.product-card input {
+  background-color: var(--custom-blue); /* use site blue */
+  color: white;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 0.6rem;
+  border-radius: 8px;
+}
+.product-card input::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+.btn-add {
+  background-color: var(--custom-blue);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.btn-add:hover {
+  filter: brightness(0.9);
+}
+
+/* Sidebar cart style */
+.cart-sidebar {
+  background-color: var(--custom-gray);
+  border-radius: 12px;
+  padding: 1rem;
+  color: #fff;
+}

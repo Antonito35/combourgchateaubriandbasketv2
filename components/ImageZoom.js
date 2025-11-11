@@ -4,9 +4,14 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 
-export default function ImageZoom({ src, alt = "Image", zoomWidth = 1920, zoomHeight = 1080, ...rest }) {
+export default function ImageZoom({ src, alt = "Image", zoomWidth = 1920, zoomHeight = 1080, onPrev, onNext, ...rest }) {
   const [isZoomed, setIsZoomed] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(src)
+
+  // Sync currentSrc when parent changes the src prop (fix carousel arrows)
+  useEffect(() => {
+    setCurrentSrc(src)
+  }, [src])
 
   // Empêche le scroll du body quand modal ouverte
   useEffect(() => {
@@ -39,7 +44,8 @@ export default function ImageZoom({ src, alt = "Image", zoomWidth = 1920, zoomHe
           alt={alt}
           width={rest.width || 300}
           height={rest.height || 200}
-          className={rest.className ? rest.className + " object-cover" : "rounded-lg shadow-lg object-cover"}
+          // Respect the provided className (don't force object-cover)
+          className={rest.className ? rest.className : "rounded-lg shadow-lg object-contain"}
           onError={() => {
             if (currentSrc !== "/images/image.png") setCurrentSrc("/images/image.png")
           }}
@@ -75,8 +81,22 @@ export default function ImageZoom({ src, alt = "Image", zoomWidth = 1920, zoomHe
                 />
               </svg>
             </div>
-            <div className="flex flex-col items-center">
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+            <div className="flex flex-col items-center" style={{ width: '100%' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', position: 'relative' }}>
+                {/* Prev button inside modal */}
+                {onPrev && (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); onPrev(); }}
+                    aria-label="Précédent"
+                    className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/10 text-white p-3 rounded-full"
+                  >
+                    {/* left chevron */}
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                )}
+
                 <Image
                   src={currentSrc}
                   alt={alt}
@@ -88,6 +108,20 @@ export default function ImageZoom({ src, alt = "Image", zoomWidth = 1920, zoomHe
                   }}
                   onClick={(e) => e.stopPropagation()}
                 />
+
+                {/* Next button inside modal */}
+                {onNext && (
+                  <button
+                    onClick={(e) => { e.stopPropagation(); onNext(); }}
+                    aria-label="Suivant"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/10 text-white p-3 rounded-full"
+                  >
+                    {/* right chevron */}
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                )}
               </div>
               {alt && <p onClick={(e) => e.stopPropagation()} className="text-white mt-3 text-center">{alt}</p>}
             </div>

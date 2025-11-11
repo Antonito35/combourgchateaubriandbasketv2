@@ -23,7 +23,7 @@ export default function ProductCard({ product, addToCart }) {
 
   return (
     <div className="product-card p-6">
-      <div className="text-left">
+      <div className="text-left">  
         <div className="mb-3 rounded-md overflow-hidden bg-white/5 p-3 flex items-center justify-center">
           <ImageZoom src={product.image} />
         </div>

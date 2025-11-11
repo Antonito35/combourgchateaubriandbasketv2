@@ -3,13 +3,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import ImageZoom from "./ImageZoom";
 
 const images = [
-  "/images/hyper_u.png",
-  "/images/intermarche.png",
-  "/images/le_repaire.jpg",
-  "/images/macdo.png",
-  "/images/maxivelo.png",
-  "/images/orange_bleu.png",
-  "/images/chat_toque.jpeg",
+  "/images/imagematch1.jpg",
+  "/images/imagematch2.jpg",
+  "/images/imagematch3.jpg",
+  "/images/imagematch4.jpg",
 ];
 
 export function ImageCarousel() {
@@ -27,11 +24,15 @@ export function ImageCarousel() {
 
   return (
     <div className="w-full flex justify-center">
-      <div className="relative max-w-xl w-full">
+      {/* Increase carousel max width so images appear larger before clicking */}
+      <div className="relative max-w-5xl w-full">
         <ImageZoom
           src={images[currentIndex]}
           alt="carousel"
-          className="w-full h-64 object-cover rounded-lg shadow-md"
+          // Show the whole image inside the carousel (no crop) and make it bigger
+          className="w-full h-auto sm:max-h-[33vh] md:max-h-[43vh] lg:max-h-[53vh] object-contain rounded-lg shadow-md"
+          onPrev={prevImage}
+          onNext={nextImage}
         />
         <button
           onClick={prevImage}
@@ -45,7 +46,7 @@ export function ImageCarousel() {
         >
           <ChevronRight size={16} />
         </button>
-      </div>
+        </div>
     </div>
   );    
 }
