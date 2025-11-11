@@ -22,7 +22,7 @@ export default function ProductCard({ product, addToCart }) {
   }
 
   return (
-    <div className="p-6 rounded-xl shadow-lg transform transition hover:-translate-y-1" style={{ background: 'linear-gradient(180deg,#2f4358 0%, #253444 100%)' }}>
+    <div className="product-card p-6">
       <div className="text-left">
         <div className="mb-3 rounded-md overflow-hidden bg-white/5 p-3 flex items-center justify-center">
           <ImageZoom src={product.image} />
@@ -84,7 +84,7 @@ export default function ProductCard({ product, addToCart }) {
       </div>
       <button
         onClick={handleAddToCart}
-        className="mt-4 bg-yellow-500 text-black px-5 py-3 rounded hover:bg-yellow-600 w-full font-semibold text-lg"
+        className="mt-4 btn-add px-5 py-3 rounded w-full text-lg"
       >
         Ajouter au panier
       </button>

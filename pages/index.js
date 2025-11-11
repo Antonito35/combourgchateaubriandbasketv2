@@ -71,15 +71,18 @@ export default function Home() {
                   dispose de 25 équipes des babys (U7) aux vétérans. L'équipe phare du club évolue en régional masculin.
                 </p>
                 <h2 className="text-2xl font-semibold mb-4 text-gray-700">Les valeurs du club :</h2>
-                <ul className="list-none space-y-2">
-                  <li className="flex items-center text-gray-700">
-                    <span className="mr-2">🏀</span> Convivialité
+                <ul className="list-none space-y-2 flex flex-col items-center text-gray-700">
+                  <li className="flex items-center justify-center">
+                    <span className="mr-2">🏀</span>
+                    <span>Convivialité</span>
                   </li>
-                  <li className="flex items-center text-gray-700">
-                    <span className="mr-2">🤝</span> Entraide
+                  <li className="flex items-center justify-center">
+                    <span className="mr-2">🤝</span>
+                    <span>Entraide</span>
                   </li>
-                  <li className="flex items-center text-gray-700">
-                    <span className="mr-2">🎖️</span> Respect
+                  <li className="flex items-center justify-center">
+                    <span className="mr-2">🎖️</span>
+                    <span>Respect</span>
                   </li>
                 </ul>
               </div>
