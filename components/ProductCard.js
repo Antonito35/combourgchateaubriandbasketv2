@@ -1,13 +1,34 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import ImageZoom from "@/components/ImageZoom";
 
 export default function ProductCard({ product, addToCart }) {
+  // default color left empty so user still must select for add-to-cart validation
   const [color, setColor] = useState("")
   const [size, setSize] = useState("")
   const [flocking, setFlocking] = useState("")
+  const [imgIndex, setImgIndex] = useState(0)
+
+  // Determine which images to show depending on selected color (if product provides imagesByColor)
+  const selectedColorForImage = color || (product.colors && product.colors.length ? product.colors[0] : null)
+
+  let images = product.images || (product.image ? [product.image] : [])
+  if (product.imagesByColor) {
+    if (selectedColorForImage && product.imagesByColor[selectedColorForImage]) {
+      images = product.imagesByColor[selectedColorForImage]
+    } else {
+      // fallback to first available color mapping
+      const firstKey = Object.keys(product.imagesByColor)[0]
+      if (firstKey) images = product.imagesByColor[firstKey]
+    }
+  }
+
+  // Reset displayed index when the images set changes (e.g., color selection)
+  useEffect(() => {
+    setImgIndex(0)
+  }, [images])
 
   const handleAddToCart = () => {
     if (!color || !size) {
@@ -21,11 +42,37 @@ export default function ProductCard({ product, addToCart }) {
     addToCart(product, color, size, flocking)
   }
 
+  const prevImage = (e) => {
+    if (e && e.stopPropagation) e.stopPropagation()
+    setImgIndex((i) => (i === 0 ? images.length - 1 : i - 1))
+  }
+
+  const nextImage = (e) => {
+    if (e && e.stopPropagation) e.stopPropagation()
+    setImgIndex((i) => (i === images.length - 1 ? 0 : i + 1))
+  }
+
   return (
     <div className="product-card p-6">
       <div className="text-left">  
-        <div className="mb-3 rounded-md overflow-hidden bg-white/5 p-3 flex items-center justify-center">
-          <ImageZoom src={product.image} />
+        <div className="mb-3 rounded-md overflow-hidden bg-white/5 p-3 flex items-center justify-center relative">
+          <ImageZoom src={images[imgIndex]} onPrev={prevImage} onNext={nextImage} />
+
+          {images.length > 1 && (
+            /* Only show the right arrow on the card as requested; modal still supports prev/next */
+            <>
+              <button
+                onClick={(e) => { e.stopPropagation(); nextImage() }}
+                aria-label="Suivant"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-white text-gray-900 p-3 rounded-full z-30 shadow-xl hover:scale-105 transition-transform"
+                title="Voir la photo suivante"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6">
+                  <path d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </>
+          )}
         </div>
 
         <h3 className="text-lg font-semibold mt-2 text-white">{product.name}</h3>

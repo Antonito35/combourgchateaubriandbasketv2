@@ -33,6 +33,7 @@ export default function ImageZoom({ src, alt = "Image", zoomWidth = 1920, zoomHe
     return () => document.removeEventListener("keydown", onKey)
   }, [isZoomed])
 
+
   const closeZoom = () => setIsZoomed(false);
 
   return (
@@ -42,9 +43,9 @@ export default function ImageZoom({ src, alt = "Image", zoomWidth = 1920, zoomHe
         <Image
           src={currentSrc}
           alt={alt}
-          // Request a larger source so the image remains crisp even if CSS scales it up slightly
-          width={rest.width || Math.min(zoomWidth, 1200)}
-          height={rest.height || Math.min(zoomHeight, 800)}
+          // use a modest thumbnail size to avoid pixelation when zoomed
+          width={rest.width || Math.min(zoomWidth, 800)}
+          height={rest.height || Math.min(zoomHeight, 600)}
           // Respect the provided className (don't force object-cover)
           className={rest.className ? rest.className : "rounded-lg shadow-lg object-contain"}
           onError={() => {
@@ -98,17 +99,18 @@ export default function ImageZoom({ src, alt = "Image", zoomWidth = 1920, zoomHe
                   </button>
                 )}
 
-                <Image
-                  src={currentSrc}
-                  alt={alt}
-                  width={zoomWidth}
-                  height={zoomHeight}
-                  style={{ maxWidth: '100%', maxHeight: 'calc(100vh - 80px)', objectFit: 'contain' }}
-                  onError={() => {
-                    if (currentSrc !== "/images/image.png") setCurrentSrc("/images/image.png")
-                  }}
-                  onClick={(e) => e.stopPropagation()}
-                />
+                    <Image
+                      src={currentSrc}
+                      alt={alt}
+                      // reduce modal max size so even small images are not blown up too much
+                      width={Math.min(zoomWidth, 900)}
+                      height={Math.min(zoomHeight, 700)}
+                      style={{ maxWidth: '100%', maxHeight: 'calc(100vh - 120px)', objectFit: 'contain' }}
+                      onError={() => {
+                        if (currentSrc !== "/images/image.png") setCurrentSrc("/images/image.png")
+                      }}
+                      onClick={(e) => e.stopPropagation()}
+                    />
 
                 {/* Next button inside modal */}
                 {onNext && (
