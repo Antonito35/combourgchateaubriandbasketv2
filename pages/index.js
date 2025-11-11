@@ -68,7 +68,7 @@ export default function Home() {
                 <p className="text-gray-700 mb-4">
                   La Chateaubriand Combourg Basket est une section de l'association la Chateaubriand, loi 1901,
                   proposant l'enseignement et la pratique du basket-ball sur la commune de Combourg depuis 1928. Elle
-                  dispose de 25 équipes des babys (U7) aux vétérans. L'équipe phare du club évolue en régional masculin.
+                  dispose de 22 équipes des babys (U7) aux vétérans. L'équipe phare du club évolue en régional masculin.
                 </p>
                 <h2 className="text-2xl font-semibold mb-4 text-gray-700">Les valeurs du club :</h2>
                 <ul className="list-none space-y-2 flex flex-col items-center text-gray-700">

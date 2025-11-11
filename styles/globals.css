@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply font-sans;
+}
+
 :root {
   --custom-blue: rgb(42, 67, 99);
   --custom-gray: #333;
@@ -9,7 +13,6 @@
 
 /* Styles généraux */
 body {
-  font-family: Arial, sans-serif;
   background-color: var(--custom-blue);
   color: white;
   margin: 0;
@@ -24,58 +27,38 @@ body ::selection {
 
 /* En-tête */
 header {
-  background-color: transparent; /* menu sans fond */
-  padding: 1rem 0.75rem;
+  padding: 1rem;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 header img{
-  margin-bottom: 0;
+  margin-bottom: 1rem;
 }
 
 #logo {
   width: 7rem;
 }
 
-/* Menu principal : fond retiré, liens visibles et hover discret */
 nav ul {
+  padding: 2rem;
   list-style-type: none;
-  margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
-  gap: 0.75rem;
   flex-wrap: wrap;
-  background: transparent;
 }
 
 nav ul li {
-  background: transparent;
-  margin: 0;
+  margin: 0 1rem;
 }
 
 nav ul li a {
-  display: inline-block;
-  padding: 0.45rem 0.9rem;
   color: white;
   text-decoration: none;
-  font-weight: 700;
-  border-radius: 6px;
-  transition: color 160ms ease, background-color 160ms ease, transform 120ms ease;
 }
 
-/* Retirer tout fond sur hover mais ajouter un effet textuel */
 nav ul li:hover {
-  background: transparent;
-}
-
-nav ul li a:hover,
-nav ul li a:focus {
-  color: #ffd54a; /* accent doré au survol */
-  text-decoration: underline;
-  transform: translateY(-2px);
+  background-color: rgb(225, 224, 224);
 }
 
 /* Contenu principal */
@@ -88,6 +71,14 @@ main {
 main ImageCarousel {
   text-align: center;
   align-items: center;
+}
+
+.Carrousel{
+  width: 200%;
+}
+
+ul li{
+  justify-content: center;
 }
 
 .floquage-option {
@@ -311,7 +302,7 @@ footer p {
 /* Conteneur principal */
 .scrollWrapper {
   width: 92vw; /* Utilise toute la largeur de l’écran */
-  width: 200%;
+  width: 100%;
   overflow: hidden;
   position: relative;
   background-color: #333;
@@ -338,7 +329,7 @@ footer p {
 
 /* Images */
 .image {
-  width: 200px; /* Ajuster selon les besoins */
+  width: 200px; 
   height: 150px;
   object-fit: contain;
   border-radius: 8px;
@@ -366,7 +357,7 @@ footer p {
     height: 170px;
   }  
   .scrollWrapper {
-    width: 200%; /* Utiliser un peu moins d’espace sur tablette */
+    width: 100%; /* Utiliser un peu moins d’espace sur tablette */
   }
 }
 
@@ -382,12 +373,13 @@ footer p {
     width: 100%; /* Utiliser un peu moins d’espace sur tablette */
   }
 
+  .Carrousel{
+    width: 100%;
+  }
+
   .image {
     width: 200px; /* Images encore plus petites sur mobile */
     height: 140px;
-  }
-  .scrollMenu {
-    animation: scroll 20s linear infinite; /* Accélérer le défilement sur mobile */
   }
 }
 
@@ -399,7 +391,7 @@ footer p {
     justify-content: center;
   }
   .scrollWrapper {
-    width: 100%; /* Utiliser un peu moins d’espace sur tablette */
+    width: 100%; /* Utiliser un peu moins d’espace que sur tablette */
   }
 
   .image {
@@ -407,41 +399,3 @@ footer p {
     height: 100px;
   }
 }
-
-/* Utilities pour centrer les listes d'icônes + labels (ex: 🏀 Convivialité) */
-.center-inline {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  text-align: center;
-  flex-wrap: wrap;
-}
-
-.center-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
-  text-align: center;
-}
-
-.feature-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
-}
-
-.feature-emoji {
-  font-size: 1.8rem;
-  line-height: 1;
-}
-
-.feature-label {
-  font-size: 1rem;
-  color: #fff;
-}
-
