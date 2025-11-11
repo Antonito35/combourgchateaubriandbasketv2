@@ -42,8 +42,9 @@ export default function ImageZoom({ src, alt = "Image", zoomWidth = 1920, zoomHe
         <Image
           src={currentSrc}
           alt={alt}
-          width={rest.width || 300}
-          height={rest.height || 200}
+          // Request a larger source so the image remains crisp even if CSS scales it up slightly
+          width={rest.width || Math.min(zoomWidth, 1200)}
+          height={rest.height || Math.min(zoomHeight, 800)}
           // Respect the provided className (don't force object-cover)
           className={rest.className ? rest.className : "rounded-lg shadow-lg object-contain"}
           onError={() => {

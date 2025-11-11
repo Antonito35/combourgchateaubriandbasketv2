@@ -25,12 +25,12 @@ export function ImageCarousel() {
   return (
     <div className="w-full flex justify-center">
       {/* Increase carousel max width so images appear larger before clicking */}
-      <div className="relative max-w-5xl w-full">
+      <div className="relative max-w-4xl w-full">
         <ImageZoom
           src={images[currentIndex]}
           alt="carousel"
-          // Show the whole image inside the carousel (no crop) and make it bigger
-          className="w-full h-auto sm:max-h-[33vh] md:max-h-[43vh] lg:max-h-[53vh] object-contain rounded-lg shadow-md"
+          // Show the whole image inside the carousel (no crop) and make it slightly smaller to avoid visible pixelation
+          className="w-full h-auto sm:max-h-[24vh] md:max-h-[30vh] lg:max-h-[36vh] object-contain rounded-lg shadow-md"
           onPrev={prevImage}
           onNext={nextImage}
         />
