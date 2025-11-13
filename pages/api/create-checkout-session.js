@@ -10,20 +10,38 @@ export default async function handler(req, res) {
 
   if (req.method === "POST") {
     try {
-      const { cart, customerInfo } = req.body
+      // Log incoming body to help debug locally (will appear in terminal)
+      console.log('[create-checkout-session] incoming body:', req.body)
+
+      const { cart, customerInfo } = req.body || {}
+
+      if (!cart || !Array.isArray(cart) || cart.length === 0) {
+        res.status(400).json({ statusCode: 400, message: 'Cart is empty or invalid' })
+        return
+      }
+
+      // sanitize/normalize items
+      const lineItems = cart.map((item) => {
+        const price = Number(item.price || 0)
+        const qty = Number(item.qty || 1)
+        return {
+          price,
+          qty,
+          name: String(item.name || 'Article')
+        }
+      })
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
-        line_items: cart.map((item) => ({
+        line_items: lineItems.map((item, idx) => ({
           price_data: {
             currency: "eur",
             product_data: {
-              name: `${item.name} (${item.color || 'N/A'}, ${item.size || 'N/A'}${item.flocking ? `, Floquage: ${item.flocking}` : ""})`,
+              name: `${item.name}${cart[idx]?.color ? ` (${cart[idx].color})` : ''}`,
             },
-            // use unit price and quantity from the frontend
-            unit_amount: Math.round((item.price || 0) * 100),
+            unit_amount: Math.max(0, Math.round(item.price * 100)),
           },
-          quantity: item.qty || 1,
+          quantity: Math.max(1, Math.round(item.qty)),
         })),
         mode: "payment",
         success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
@@ -37,7 +55,8 @@ export default async function handler(req, res) {
 
       res.status(200).json({ id: session.id })
     } catch (err) {
-      res.status(500).json({ statusCode: 500, message: err.message })
+      console.error('[create-checkout-session] error:', err)
+      res.status(500).json({ statusCode: 500, message: err.message || 'Internal server error' })
     }
   } else {
     res.setHeader("Allow", "POST")

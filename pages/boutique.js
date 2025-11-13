@@ -83,8 +83,8 @@ function CheckoutForm({ cart, cartTotal }) {
 
 const products = [
   { id: 1, name: "T-shirt coton logo coeur", price: 50, images: [
-      "/images/img boutique/debardeur logo coeur/devant debardeur logo coueur blanc.png",
-      "/images/img boutique/debardeur logo coeur/dos debardeur logo coueur blanc.png",
+      "/images/image.png",
+      "/images/image.png",
     ], colors: ["Blanc","Noir"], imagesByColor: {
       Blanc: [
         "/images/img boutique/debardeur logo coeur/devant debardeur logo coueur blanc.png",
