@@ -1,9 +1,85 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { loadStripe } from '@stripe/stripe-js'
 import Link from "next/link";
 import Layout from "../components/Layout";
 import ProductCard from "../components/ProductCard";
+
+function CheckoutForm({ cart, cartTotal }) {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [address, setAddress] = useState("")
+  const [processing, setProcessing] = useState(false)
+
+  const handleCheckout = async () => {
+    if (!cart || cart.length === 0) {
+      alert('Votre panier est vide.')
+      return
+    }
+    if (!name || !email) {
+      alert('Veuillez renseigner votre nom et votre email.')
+      return
+    }
+
+    setProcessing(true)
+    try {
+      const payloadCart = cart.map((it) => ({
+        name: it.name,
+        color: it.color,
+        size: it.size,
+        flocking: it.flocking,
+        price: it.price,
+        qty: it.qty || 1,
+      }))
+
+      const res = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cart: payloadCart, customerInfo: { name, email, address } }),
+      })
+
+      const data = await res.json()
+      if (!res.ok) {
+        alert(data.message || 'Erreur lors de la création de la session de paiement')
+        setProcessing(false)
+        return
+      }
+
+      const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+      if (!publishableKey) {
+        alert('Clé publique Stripe manquante. Configurez NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY dans votre environnement.')
+        setProcessing(false)
+        return
+      }
+
+      const stripe = await loadStripe(publishableKey)
+      if (!stripe) {
+        alert('Impossible d\'initialiser Stripe.')
+        setProcessing(false)
+        return
+      }
+
+      await stripe.redirectToCheckout({ sessionId: data.id })
+    } catch (err) {
+      console.error(err)
+      alert('Erreur inattendue: ' + (err.message || err))
+      setProcessing(false)
+    }
+  }
+
+  return (
+    <div className="mt-3">
+      <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Nom complet" value={name} onChange={(e) => setName(e.target.value)} />
+      <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Adresse (facultatif)" value={address} onChange={(e) => setAddress(e.target.value)} />
+      <div className="text-sm text-gray-300 mb-2">Montant à payer: <strong>{cartTotal.toFixed(2)}€</strong></div>
+      <button onClick={handleCheckout} disabled={processing} className="w-full bg-green-600 text-white py-2 rounded">
+        {processing ? 'Redirection vers le paiement...' : 'Payer'}
+      </button>
+    </div>
+  )
+}
 
 const products = [
   { id: 1, name: "T-shirt coton logo coeur", price: 50, images: [
@@ -227,6 +303,14 @@ export default function Boutique() {
                       </div>
                     </div>
                   )}
+                  {/* Checkout form */}
+                  <div className="mt-4">
+                    <h4 className="text-md font-semibold text-white mb-2">Informations de paiement</h4>
+                    <CheckoutForm
+                      cart={cart}
+                      cartTotal={cartTotal}
+                    />
+                  </div>
                 </div>
               </div>
             </aside>

@@ -18,19 +18,20 @@ export default async function handler(req, res) {
           price_data: {
             currency: "eur",
             product_data: {
-              name: `${item.name} (${item.color}, ${item.size}${item.flocking ? `, Floquage: ${item.flocking}` : ""})`,
+              name: `${item.name} (${item.color || 'N/A'}, ${item.size || 'N/A'}${item.flocking ? `, Floquage: ${item.flocking}` : ""})`,
             },
-            unit_amount: item.totalPrice * 100, // Stripe utilise les centimes
+            // use unit price and quantity from the frontend
+            unit_amount: Math.round((item.price || 0) * 100),
           },
-          quantity: 1,
+          quantity: item.qty || 1,
         })),
         mode: "payment",
         success_url: `${req.headers.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}/boutique`,
-        customer_email: customerInfo.email,
+        customer_email: customerInfo?.email,
         metadata: {
-          customerName: customerInfo.name,
-          customerAddress: customerInfo.address,
+          customerName: customerInfo?.name,
+          customerAddress: customerInfo?.address,
         },
       })
 
