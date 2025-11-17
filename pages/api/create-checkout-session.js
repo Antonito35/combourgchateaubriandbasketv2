@@ -1,12 +1,21 @@
 import Stripe from "stripe"
 
 export default async function handler(req, res) {
-  if (!process.env.STRIPE_SECRET_KEY) {
+  // Nettoie la clé d'environnement pour éviter les espaces ou guillemets parasites
+  const rawKey = process.env.STRIPE_SECRET_KEY || ''
+  const stripeSecret = rawKey.trim().replace(/^\"|\"$/g, '')
+  // Log masqué pour debug local sans exposer la clé complète
+  const masked = stripeSecret ? `${stripeSecret.slice(0,6)}...${stripeSecret.slice(-4)}` : '<empty>'
+  console.log('[create-checkout-session] stripeSecret (masked):', masked)
+  if (stripeSecret && !/^sk_(test|live)_/.test(stripeSecret)) {
+    console.warn('[create-checkout-session] Warning: STRIPE_SECRET_KEY does not look like a standard Stripe key prefix (sk_test_ or sk_live_)')
+  }
+  if (!stripeSecret) {
     res.status(500).json({ statusCode: 500, message: "STRIPE_SECRET_KEY not set in environment" })
     return
   }
 
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+  const stripe = new Stripe(stripeSecret)
 
   if (req.method === "POST") {
     try {

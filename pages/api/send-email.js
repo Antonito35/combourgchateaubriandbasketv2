@@ -5,12 +5,15 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     const { sessionId } = req.body
 
-    if (!process.env.STRIPE_SECRET_KEY) {
+    // Nettoie la clé d'environnement pour éviter les espaces ou guillemets parasites
+    const rawKey = process.env.STRIPE_SECRET_KEY || ''
+    const stripeSecret = rawKey.trim().replace(/^\"|\"$/g, '')
+    if (!stripeSecret) {
       res.status(500).json({ message: "STRIPE_SECRET_KEY not set in environment" })
       return
     }
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+    const stripe = new Stripe(stripeSecret)
 
     try {
       // Récupérer les détails de la session Stripe

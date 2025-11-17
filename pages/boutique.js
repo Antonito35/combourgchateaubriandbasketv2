@@ -6,13 +6,18 @@ import Link from "next/link";
 import Layout from "../components/Layout";
 import ProductCard from "../components/ProductCard";
 
-function CheckoutForm({ cart, cartTotal }) {
+// ====================================================================
+// START: CheckoutForm COMPONENT (avec la correction de la logique de paiement)
+// ====================================================================
+
+function CheckoutForm({ cart, cartTotal, useMock }) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [address, setAddress] = useState("")
   const [processing, setProcessing] = useState(false)
 
   const handleCheckout = async () => {
+    // Vérifications initiales
     if (!cart || cart.length === 0) {
       alert('Votre panier est vide.')
       return
@@ -33,6 +38,26 @@ function CheckoutForm({ cart, cartTotal }) {
         qty: it.qty || 1,
       }))
 
+      // --- 1. Mode Mock (Laissé tel quel) ---
+      if (useMock) {
+        try {
+          const mockRes = await fetch('/api/mock-create-checkout-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ cart: payloadCart, customerInfo: { name, email, address } }),
+          })
+          const mockData = await mockRes.json()
+          // Redirection directe vers la page de succès pour la simulation
+          window.location.href = `/success?session_id=${mockData.id}`
+        } catch (errMock) {
+          console.error('mock fallback failed', errMock)
+          alert('Erreur lors du mock payment: ' + (errMock.message || errMock))
+        }
+        setProcessing(false)
+        return
+      }
+
+      // --- 2. Mode Production (Appel API Stripe Réel) ---
       const res = await fetch('/api/create-checkout-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -40,30 +65,47 @@ function CheckoutForm({ cart, cartTotal }) {
       })
 
       const data = await res.json()
-      if (!res.ok) {
-        alert(data.message || 'Erreur lors de la création de la session de paiement')
+      
+      // 🛑 GESTION D'ERREUR CRITIQUE : Arrêtez si l'API a échoué (400 ou 500)
+      // Ceci est la correction principale : plus de redirection vers /success en cas d'échec API.
+      if (!res.ok || !data.id) {
+        console.error('create-checkout-session failed:', data)
+        alert(data.message || 'Erreur lors de la création de la session de paiement. Vérifiez les logs Vercel/Terminal.')
         setProcessing(false)
         return
       }
 
       const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+
+      // 🛑 GESTION D'ERREUR STRIPE : Arrêtez si la clé publique manque
       if (!publishableKey) {
-        alert('Clé publique Stripe manquante. Configurez NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY dans votre environnement.')
-        setProcessing(false)
-        return
+         alert('Erreur de configuration : Clé Stripe Publique manquante.')
+         setProcessing(false)
+         return
       }
-
+      
+      // --- 3. Initialisation et Redirection vers Stripe ---
       const stripe = await loadStripe(publishableKey)
+      
       if (!stripe) {
-        alert('Impossible d\'initialiser Stripe.')
+        alert('Erreur: Impossible de charger le service de paiement Stripe.')
         setProcessing(false)
         return
       }
 
-      await stripe.redirectToCheckout({ sessionId: data.id })
+      const result = await stripe.redirectToCheckout({ sessionId: data.id })
+      
+      // Si stripe.redirectToCheckout échoue (très rare)
+      if (result && result.error) {
+        console.error('stripe.redirectToCheckout error:', result.error)
+        alert('Erreur de redirection vers le paiement: ' + result.error.message)
+      }
+
     } catch (err) {
       console.error(err)
       alert('Erreur inattendue: ' + (err.message || err))
+    } finally {
+      // Le traitement est terminé, que la redirection ait réussi ou échoué.
       setProcessing(false)
     }
   }
@@ -80,6 +122,10 @@ function CheckoutForm({ cart, cartTotal }) {
     </div>
   )
 }
+
+// ====================================================================
+// END: CheckoutForm COMPONENT
+// ====================================================================
 
 const products = [
   { id: 1, name: "T-shirt coton logo coeur", price: 50, images: [
@@ -190,6 +236,7 @@ export default function Boutique() {
   const cartRef = useRef(null)
   // control cart visibility on small screens
   const [cartVisible, setCartVisible] = useState(false)
+  const [useMock, setUseMock] = useState(false)
 
   const addToCart = (product, color, size, flocking) => {
     const key = `${product.id}::${color}::${size}::${flocking}`
@@ -276,10 +323,16 @@ export default function Boutique() {
 
             {/* Right: cart sidebar (takes 4 columns) */}
             <aside className="col-span-12 lg:col-span-4">
-              <div className="cart-sidebar border border-gray-500 rounded-lg p-4 max-h-[70vh] overflow-y-auto">
+              <div ref={cartRef} className="cart-sidebar border border-gray-500 rounded-lg p-4 max-h-[70vh] overflow-y-auto">
                 {/* On small screens, hide content unless cartVisible is true */}
                 <div className={`${cartVisible ? 'block' : 'hidden'} lg:block`}>
-                  <h3 className="text-xl font-semibold text-white mb-4 text-center">Votre panier</h3>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-xl font-semibold text-white">Votre panier</h3>
+                    <label className="inline-flex items-center gap-2 text-sm">
+                      <input type="checkbox" className="form-checkbox" checked={useMock} onChange={(e) => setUseMock(e.target.checked)} />
+                      <span className="text-gray-300">Tester sans Stripe</span>
+                    </label>
+                  </div>
                   {cart.length === 0 ? (
                     <div className="text-sm text-gray-300 text-center">Votre panier est vide.</div>
                   ) : (
@@ -309,6 +362,7 @@ export default function Boutique() {
                     <CheckoutForm
                       cart={cart}
                       cartTotal={cartTotal}
+                      useMock={useMock}
                     />
                   </div>
                 </div>
