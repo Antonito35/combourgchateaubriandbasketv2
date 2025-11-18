@@ -154,7 +154,7 @@ const products = [
         "/images/img boutique/debardeur logo dos/dos debardeur logo dos noir.png",
       ]
     }, category: "tshirt-coton" },
-  { id: 3, name: "Jogging", price: 1, images: [
+  { id: 3, name: "Jogging", price: 0, images: [
       "/images/img boutique/jogging/jogging noir.png",
     ], category: "jogging" },
   { id: 4, name: "Sweat à capuche logo coeur", price: 80, images: [
@@ -328,10 +328,6 @@ export default function Boutique() {
                 <div className={`${cartVisible ? 'block' : 'hidden'} lg:block`}>
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="text-xl font-semibold text-white">Votre panier</h3>
-                    <label className="inline-flex items-center gap-2 text-sm">
-                      <input type="checkbox" className="form-checkbox" checked={useMock} onChange={(e) => setUseMock(e.target.checked)} />
-                      <span className="text-gray-300">Tester sans Stripe</span>
-                    </label>
                   </div>
                   {cart.length === 0 ? (
                     <div className="text-sm text-gray-300 text-center">Votre panier est vide.</div>
