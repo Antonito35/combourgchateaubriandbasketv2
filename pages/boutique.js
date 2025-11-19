@@ -128,9 +128,35 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
 // ====================================================================
 
 const products = [
-  { id: 1, name: "T-shirt coton logo coeur", price: 50, images: [
-      "/images/image.png",
-      "/images/image.png",
+  // T-shirts coton
+  { id: 1, name: "T-shirt coton logo coeur", price: 15, category: "tshirt-coton" },
+  { id: 2, name: "T-shirt coton logo dos", price: 15, category: "tshirt-coton" },
+  
+  // T-shirts sport
+  { id: 3, name: "T-shirt sport logo coeur", price: 20, category: "tshirt-sport" },
+  { id: 4, name: "T-shirt sport logo dos", price: 20, category: "tshirt-sport" },
+
+  // Sweats à capuche
+  { id: 5, name: "Sweat à capuche logo coeur", price: 35, images: [
+      "/images/img boutique/sweat a capuche/devant sweat a capuche logo coeur.png",
+      "/images/img boutique/sweat a capuche/dos sweat a capuche logo coeur.png",
+    ], category: "sweat-capuche" },
+  { id: 6, name: "Sweat à capuche logo dos", price: 35, images: [
+      "/images/img boutique/sweat a capuche/devant sweat a capuche logo coeur.png",
+      "/images/img boutique/sweat a capuche/dos sweat a capuche logo coeur.png",
+    ], category: "sweat-capuche" },
+  { id: 7, name: "Sweat zippé logo coeur", price: 38, category: "sweat-capuche" },
+  { id: 8, name: "Sweat zippé logo dos", price: 38, category: "sweat-capuche" },
+
+  // Jogging
+  { id: 9, name: "Jogging", price: 30, images: [
+      "/images/img boutique/jogging/jogging noir.png",
+    ], category: "jogging" },
+
+  // Débardeurs coton
+  { id: 10, name: "Débardeur coton logo coeur", price: 12, images: [
+      "/images/img boutique/debardeur logo coeur/devant debardeur logo coueur blanc.png",
+      "/images/img boutique/debardeur logo coeur/dos debardeur logo coueur blanc.png",
     ], colors: ["Blanc","Noir"], imagesByColor: {
       Blanc: [
         "/images/img boutique/debardeur logo coeur/devant debardeur logo coueur blanc.png",
@@ -140,8 +166,8 @@ const products = [
         "/images/img boutique/debardeur logo coeur/devant debardeur logo coueur noir.png",
         "/images/img boutique/debardeur logo coeur/dos debardeur logo coueur noir.png",
       ]
-    }, category: "tshirt-coton" },
-  { id: 2, name: "T-shirt coton logo dos", price: 50, images: [
+    }, category: "debardeur-coton" },
+  { id: 11, name: "Débardeur coton logo dos", price: 12, images: [
       "/images/img boutique/debardeur logo dos/devant debardeur logo dos blanc.png",
       "/images/img boutique/debardeur logo dos/dos debardeur logo dos blanc.png",
     ], colors: ["Blanc","Noir"], imagesByColor: {
@@ -153,78 +179,11 @@ const products = [
         "/images/img boutique/debardeur logo dos/devant debardeur logo dos noir.png",
         "/images/img boutique/debardeur logo dos/dos debardeur logo dos noir.png",
       ]
-    }, category: "tshirt-coton" },
-  { id: 3, name: "Jogging", price: 0, images: [
-      "/images/img boutique/jogging/jogging noir.png",
-    ], category: "jogging" },
-  { id: 4, name: "Sweat à capuche logo coeur", price: 80, images: [
-      "/images/img boutique/sweat a capuche/devant sweat a capuche logo coeur.png",
-      "/images/img boutique/sweat a capuche/dos sweat a capuche logo coeur.png",
-    ], category: "sweat-capuche" },
-  { id: 5, name: "Sweat à capuche logo dos", price: 80, images: [
-      "/images/img boutique/sweat a capuche/devant sweat a capuche logo coeur.png",
-      "/images/img boutique/sweat a capuche/dos sweat a capuche logo coeur.png",
-    ], category: "sweat-capuche" },
-  { id: 6, name: "Sweat zippé logo coeur", price: 80, images: [
-      "/images/img boutique/sweat a capuche/devant sweat a capuche logo coeur.png",
-      "/images/img boutique/sweat a capuche/dos sweat a capuche logo coeur.png",
-    ], category: "sweat-capuche" },
-  { id: 7, name: "Sweat zippé logo dos", price: 80, images: [
-      "/images/img boutique/sweat a capuche/devant sweat a capuche logo coeur.png",
-      "/images/img boutique/sweat a capuche/dos sweat a capuche logo coeur.png",
-    ], category: "sweat-capuche" },
-  { id: 8, name: "Débardeur coton logo coeur", price: 80, images: [
-      "/images/img boutique/debardeur logo coeur/devant debardeur logo coueur noir.png",
-      "/images/img boutique/debardeur logo coeur/dos debardeur logo coueur noir.png",
-    ], colors: ["Blanc","Noir"], imagesByColor: {
-      Blanc: [
-        "/images/img boutique/debardeur logo coeur/devant debardeur logo coueur blanc.png",
-        "/images/img boutique/debardeur logo coeur/dos debardeur logo coueur blanc.png",
-      ],
-      Noir: [
-        "/images/img boutique/debardeur logo coeur/devant debardeur logo coueur noir.png",
-        "/images/img boutique/debardeur logo coeur/dos debardeur logo coueur noir.png",
-      ]
     }, category: "debardeur-coton" },
-  { id: 9, name: "Débardeur coton logo dos", price: 80, images: [
-      "/images/img boutique/debardeur logo dos/devant debardeur logo dos noir.png",
-      "/images/img boutique/debardeur logo dos/dos debardeur logo dos noir.png",
-    ], colors: ["Blanc","Noir"], imagesByColor: {
-      Blanc: [
-        "/images/img boutique/debardeur logo dos/devant debardeur logo dos blanc.png",
-        "/images/img boutique/debardeur logo dos/dos debardeur logo dos blanc.png",
-      ],
-      Noir: [
-        "/images/img boutique/debardeur logo dos/devant debardeur logo dos noir.png",
-        "/images/img boutique/debardeur logo dos/dos debardeur logo dos noir.png",
-      ]
-    }, category: "debardeur-coton" },
-  { id: 10, name: "Débardeur sport logo coeur", price: 80, images: [
-      "/images/img boutique/debardeur logo coeur/devant debardeur logo coueur noir.png",
-      "/images/img boutique/debardeur logo coeur/dos debardeur logo coueur noir.png",
-    ], colors: ["Blanc","Noir"], imagesByColor: {
-      Blanc: [
-        "/images/img boutique/debardeur logo coeur/devant debardeur logo coueur blanc.png",
-        "/images/img boutique/debardeur logo coeur/dos debardeur logo coueur blanc.png",
-      ],
-      Noir: [
-        "/images/img boutique/debardeur logo coeur/devant debardeur logo coueur noir.png",
-        "/images/img boutique/debardeur logo coeur/dos debardeur logo coueur noir.png",
-      ]
-    }, category: "debardeur-sport" },
-  { id: 11, name: "Débardeur sport logo dos", price: 80, images: [
-      "/images/img boutique/debardeur logo dos/devant debardeur logo dos noir.png",
-      "/images/img boutique/debardeur logo dos/dos debardeur logo dos noir.png",
-    ], colors: ["Blanc","Noir"], imagesByColor: {
-      Blanc: [
-        "/images/img boutique/debardeur logo dos/devant debardeur logo dos blanc.png",
-        "/images/img boutique/debardeur logo dos/dos debardeur logo dos blanc.png",
-      ],
-      Noir: [
-        "/images/img boutique/debardeur logo dos/devant debardeur logo dos noir.png",
-        "/images/img boutique/debardeur logo dos/dos debardeur logo dos noir.png",
-      ]
-    }, category: "debardeur-sport" },
+
+  // Débardeurs sport
+  { id: 12, name: "Débardeur sport logo coeur", price: 18, category: "debardeur-sport" },
+  { id: 13, name: "Débardeur sport logo dos", price: 18, category: "debardeur-sport" },
 ];
 
 export default function Boutique() {
