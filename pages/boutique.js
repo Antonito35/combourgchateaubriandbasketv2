@@ -129,7 +129,7 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
 
 const products = [
   // T-shirts coton
-  { id: 1, name: "T-shirt coton logo coeur", price: 15, category: "tshirt-coton" },
+  { id: 1, name: "T-shirt coton logo coeur", price: 1, category: "tshirt-coton" },
   { id: 2, name: "T-shirt coton logo dos", price: 15, category: "tshirt-coton" },
   
   // T-shirts sport
