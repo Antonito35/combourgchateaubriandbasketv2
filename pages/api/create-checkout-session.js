@@ -62,6 +62,7 @@ export default async function handler(req, res) {
         },
       })
 
+      console.log('[create-checkout-session] Session created successfully:', session.id)
       res.status(200).json({ id: session.id })
     } catch (err) {
       console.error('[create-checkout-session] error:', err)

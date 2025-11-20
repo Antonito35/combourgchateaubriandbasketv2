@@ -58,24 +58,27 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
       }
 
       // --- 2. Mode Production (Appel API Stripe Réel) ---
+      console.log('[checkout] Calling /api/create-checkout-session...')
       const res = await fetch('/api/create-checkout-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cart: payloadCart, customerInfo: { name, email, address } }),
       })
 
+      console.log('[checkout] API response status:', res.status)
       const data = await res.json()
+      console.log('[checkout] API response data:', data)
       
       // 🛑 GESTION D'ERREUR CRITIQUE : Arrêtez si l'API a échoué (400 ou 500)
-      // Ceci est la correction principale : plus de redirection vers /success en cas d'échec API.
       if (!res.ok || !data.id) {
         console.error('create-checkout-session failed:', data)
-        alert(data.message || 'Erreur lors de la création de la session de paiement. Vérifiez les logs Vercel/Terminal.')
+        alert(`Erreur lors de la création de la session de paiement.\nDétails: ${data.message || 'Erreur inconnue'}\nVérifiez les logs Vercel/Terminal.`)
         setProcessing(false)
         return
       }
 
       const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+      console.log('[checkout] Publishable key present:', !!publishableKey)
 
       // 🛑 GESTION D'ERREUR STRIPE : Arrêtez si la clé publique manque
       if (!publishableKey) {
@@ -85,6 +88,7 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
       }
       
       // --- 3. Initialisation et Redirection vers Stripe ---
+      console.log('[checkout] Loading Stripe.js...')
       const stripe = await loadStripe(publishableKey)
       
       if (!stripe) {
@@ -93,12 +97,13 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
         return
       }
 
+      console.log('[checkout] Redirecting to Stripe Checkout with session:', data.id)
       const result = await stripe.redirectToCheckout({ sessionId: data.id })
       
       // Si stripe.redirectToCheckout échoue (très rare)
       if (result && result.error) {
         console.error('stripe.redirectToCheckout error:', result.error)
-        alert('Erreur de redirection vers le paiement: ' + result.error.message)
+        alert(`Erreur de redirection vers le paiement:\n${result.error.message}\n\nSi le problème persiste, vérifiez que votre compte Stripe est activé pour les paiements live.`)
       }
 
     } catch (err) {
