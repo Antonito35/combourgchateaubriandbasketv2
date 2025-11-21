@@ -15,6 +15,9 @@ export default function ProductCard({ product, addToCart }) {
   const selectedColorForImage = color || (product.colors && product.colors.length ? product.colors[0] : null)
 
   let images = product.images || (product.image ? [product.image] : [])
+  if (!images || images.length === 0) {
+    images = ["/images/image.png"]
+  }
   if (product.imagesByColor) {
     if (selectedColorForImage && product.imagesByColor[selectedColorForImage]) {
       images = product.imagesByColor[selectedColorForImage]
@@ -55,8 +58,8 @@ export default function ProductCard({ product, addToCart }) {
   return (
     <div className="product-card p-6">
       <div className="text-left">  
-        <div className="mb-3 rounded-md overflow-hidden bg-white/5 p-3 flex items-center justify-center relative">
-          <ImageZoom src={images[imgIndex]} onPrev={prevImage} onNext={nextImage} />
+        <div className="mb-3 rounded-md overflow-hidden bg-white/5 p-3 flex items-center justify-center relative h-48 md:h-64 lg:h-80">
+          <ImageZoom src={images[imgIndex]} onPrev={prevImage} onNext={nextImage} thumbnail className="w-full h-full" />
 
           {images.length > 1 && (
             /* Only show the right arrow on the card as requested; modal still supports prev/next */

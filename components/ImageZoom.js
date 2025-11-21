@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 
-export default function ImageZoom({ src, alt = "Image", zoomWidth = 1920, zoomHeight = 1080, onPrev, onNext, ...rest }) {
+export default function ImageZoom({ src, alt = "Image", zoomWidth = 1920, zoomHeight = 1080, onPrev, onNext, thumbnail = false, ...rest }) {
   const [isZoomed, setIsZoomed] = useState(false);
   const [currentSrc, setCurrentSrc] = useState(src)
 
@@ -40,19 +40,33 @@ export default function ImageZoom({ src, alt = "Image", zoomWidth = 1920, zoomHe
     <div>
       {/* Image d'origine */}
       <div className="cursor-pointer" onClick={() => setIsZoomed(true)}>
-        <Image
-          src={currentSrc}
-          alt={alt}
-          // use a modest thumbnail size to avoid pixelation when zoomed
-          width={rest.width || Math.min(zoomWidth, 800)}
-          height={rest.height || Math.min(zoomHeight, 600)}
-          // Respect the provided className (don't force object-cover)
-          className={rest.className ? rest.className : "rounded-lg shadow-lg object-contain"}
-          onError={() => {
-            if (currentSrc !== "/images/image.png") setCurrentSrc("/images/image.png")
-          }}
-          {...(rest || {})}
-        />
+        {thumbnail ? (
+          <div className={rest.className ? rest.className : 'w-full h-full relative'}>
+            <Image
+              src={currentSrc}
+              alt={alt}
+              fill
+              style={{ objectFit: 'contain' }}
+              onError={() => {
+                if (currentSrc !== "/images/image.png") setCurrentSrc("/images/image.png")
+              }}
+            />
+          </div>
+        ) : (
+          <Image
+            src={currentSrc}
+            alt={alt}
+            // use a modest thumbnail size to avoid pixelation when zoomed
+            width={rest.width || Math.min(zoomWidth, 800)}
+            height={rest.height || Math.min(zoomHeight, 600)}
+            // Respect the provided className (don't force object-cover)
+            className={rest.className ? rest.className : "rounded-lg shadow-lg object-contain"}
+            onError={() => {
+              if (currentSrc !== "/images/image.png") setCurrentSrc("/images/image.png")
+            }}
+            {...(rest || {})}
+          />
+        )}
       </div>
 
       {/* Si zoom activé, afficher la modale centrée via portal */}
