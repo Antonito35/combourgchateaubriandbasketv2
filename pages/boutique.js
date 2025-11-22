@@ -68,7 +68,7 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
       console.log('[checkout] API response status:', res.status)
       const data = await res.json()
       console.log('[checkout] API response data:', data)
-      
+
       // 🛑 GESTION D'ERREUR CRITIQUE : Arrêtez si l'API a échoué (400 ou 500)
       if (!res.ok || !data.id) {
         console.error('create-checkout-session failed:', data)

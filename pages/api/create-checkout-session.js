@@ -65,8 +65,14 @@ export default async function handler(req, res) {
       console.log('[create-checkout-session] Session created successfully:', session.id)
       res.status(200).json({ id: session.id })
     } catch (err) {
+      // Do not simulate success on authentication or other errors; return proper 500 so client shows an error.
       console.error('[create-checkout-session] error:', err)
-      res.status(500).json({ statusCode: 500, message: err.message || 'Internal server error' })
+      try {
+        console.error('[create-checkout-session] err.type:', err && err.type)
+        console.error('[create-checkout-session] err.code:', err && err.code)
+        console.error('[create-checkout-session] err.rawType:', err && err.rawType)
+      } catch (e) {}
+      res.status(500).json({ statusCode: 500, message: err && (err.message || 'Internal server error') })
     }
   } else {
     res.setHeader("Allow", "POST")
