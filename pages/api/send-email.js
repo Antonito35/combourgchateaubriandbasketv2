@@ -101,6 +101,41 @@ export default async function handler(req, res) {
 
       // Envoyer l'e-mail
       await transporter.sendMail(mailOptions)
+
+      // Envoyer une confirmation simple au client (si email client présent)
+      if (customerEmail) {
+        const orderShortLines = (orderDetails || []).map((item) => {
+          if (item.name || item.price) {
+            const qty = item.qty || item.quantity || 1
+            const descriptors = []
+            if (item.size) descriptors.push(`taille ${item.size}`)
+            if (item.color) descriptors.push(item.color)
+            if (item.flocking) descriptors.push(item.flocking)
+            const desc = descriptors.length ? ` (${descriptors.join(' • ')})` : ''
+            const price = item.price != null ? item.price : (item.amount_total ? item.amount_total / 100 : 0)
+            return `${qty}× ${item.name}${desc} — ${price}€`
+          }
+          const descText = item.description || (item.price && item.price.product && item.price.product.name) || 'Article'
+          const amount = item.amount_total ? item.amount_total / 100 : (item.price && item.price.unit_amount ? item.price.unit_amount / 100 : 0)
+          const qty = item.quantity || 1
+          return `${qty}× ${descText} — ${amount}€`
+        }).join('\n')
+
+        const customerMailOptions = {
+          from: `"Club de Basket Combourg" <${process.env.EMAIL_USER}>`,
+          to: customerEmail,
+          subject: 'Confirmation de votre commande - Club de Basket Combourg',
+          text: `Nous avons bien reçu votre commande.\n\n${orderShortLines}\n\nTotal: ${total}€\n\nMerci de votre confiance.`,
+          html: `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;"><p>Nous avons bien reçu votre commande.</p><p><strong>Récapitulatif :</strong></p><pre style="white-space: pre-wrap;">${orderShortLines}</pre><p><strong>Total :</strong> ${total}€</p><p>Merci de votre confiance.</p></div>`,
+        }
+
+        try {
+          await transporter.sendMail(customerMailOptions)
+        } catch (e) {
+          console.error('[send-email] Erreur envoi e-mail client:', e)
+        }
+      }
+
       res.status(200).json({ message: "E-mail envoyé avec succès" })
     } catch (error) {
       console.error("Erreur lors de l'envoi de l'e-mail:", error)
