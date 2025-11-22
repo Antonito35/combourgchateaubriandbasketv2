@@ -17,8 +17,7 @@ export const sendConfirmationEmail = async ({ customerEmail, orderDetails, total
       html: `
         <h1>Merci pour votre commande !</h1>
         <p>Votre paiement a été traité avec succès.</p>
-        <h2>Détails de votre commande :</h2>
-        <ul>
+         <ul>
           ${orderDetails.map((item) => `<li>${item.quantity} x ${item.description} - ${item.amount / 100}€</li>`).join("")}
         </ul>
         <p><strong>Total :</strong> ${total}€</p>

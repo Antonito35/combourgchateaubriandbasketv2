@@ -46,7 +46,8 @@ export default async function handler(req, res) {
           price_data: {
             currency: "eur",
             product_data: {
-              name: `${item.name}${cart[idx]?.color ? ` (${cart[idx].color})` : ''}`,
+              // include color/size/flocking in product name for clarity
+              name: `${item.name}${cart[idx]?.color ? ` (${cart[idx].color})` : ''}${cart[idx]?.size ? ` - ${cart[idx].size}` : ''}${cart[idx]?.flocking ? ` - ${cart[idx].flocking}` : ''}`,
             },
             unit_amount: Math.max(0, Math.round(item.price * 100)),
           },
@@ -59,6 +60,8 @@ export default async function handler(req, res) {
         metadata: {
           customerName: customerInfo?.name,
           customerAddress: customerInfo?.address,
+          // attach entire cart as JSON so the webhook/email can show full item details
+          cart: JSON.stringify(cart || []),
         },
       })
 
