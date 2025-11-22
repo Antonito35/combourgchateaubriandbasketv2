@@ -56,5 +56,5 @@ const handleCheckout = async () => {
     } finally {
       // Le traitement est terminé, que la redirection ait réussi ou échoué.
       setProcessing(false)
-    }
+    }s
   }

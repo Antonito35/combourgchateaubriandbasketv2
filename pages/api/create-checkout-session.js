@@ -59,7 +59,11 @@ export default async function handler(req, res) {
         customer_email: customerInfo?.email,
         metadata: {
           customerName: customerInfo?.name,
-          customerAddress: customerInfo?.address,
+          customerPhone: customerInfo?.phone,
+          customerDepartment: customerInfo?.department,
+          customerCity: customerInfo?.city,
+          customerPostalCode: customerInfo?.postalCode,
+          customerAddressLine: customerInfo?.addressLine,
           // attach entire cart as JSON so the webhook/email can show full item details
           cart: JSON.stringify(cart || []),
         },

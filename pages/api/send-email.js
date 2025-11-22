@@ -23,7 +23,14 @@ export default async function handler(req, res) {
 
       const customerEmail = session.customer_email
       const customerName = session.metadata.customerName
-      const customerAddress = session.metadata.customerAddress
+      const customerPhone = session.metadata.customerPhone
+      const customerDepartment = session.metadata.customerDepartment
+      const customerCity = session.metadata.customerCity
+      const customerPostalCode = session.metadata.customerPostalCode
+      const customerAddressLine = session.metadata.customerAddressLine
+      const customerAddress = [customerAddressLine, customerDepartment, `${customerPostalCode || ''} ${customerCity || ''}`]
+        .filter(Boolean)
+        .join(' - ')
       // If cart JSON was attached to metadata use it for detailed items (includes size/color/flocking)
       let cartFromMetadata = []
       try {
@@ -78,6 +85,7 @@ export default async function handler(req, res) {
             <h1 style="color: #2a4363;">Nouvelle commande reçue</h1>
             <p><strong>Nom du client :</strong> ${customerName}</p>
             <p><strong>Email du client :</strong> ${customerEmail}</p>
+            <p><strong>Téléphone du client :</strong> ${customerPhone || 'N/A'}</p>
             <p><strong>Adresse du client :</strong> ${customerAddress}</p>
             
             <h2 style="color: #2a4363;">Détails de la commande :</h2>

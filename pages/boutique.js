@@ -13,7 +13,11 @@ import ProductCard from "../components/ProductCard";
 function CheckoutForm({ cart, cartTotal, useMock }) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
-  const [address, setAddress] = useState("")
+  const [addressLine, setAddressLine] = useState("")
+  const [department, setDepartment] = useState("")
+  const [city, setCity] = useState("")
+  const [postalCode, setPostalCode] = useState("")
+  const [phone, setPhone] = useState("")
   const [processing, setProcessing] = useState(false)
 
   const handleCheckout = async () => {
@@ -37,14 +41,38 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
         price: it.price,
         qty: it.qty || 1,
       }))
+      // Build structured customer info and validate required fields
+      const customerInfo = {
+        name: name.trim(),
+        email: email.trim(),
+        phone: phone.trim(),
+        addressLine: addressLine.trim(),
+        department: department.trim(),
+        city: city.trim(),
+        postalCode: postalCode.trim(),
+      }
 
-      // --- 1. Mode Mock (Laissé tel quel) ---
+      const missing = []
+      if (!customerInfo.name) missing.push('Nom')
+      if (!customerInfo.email) missing.push('Email')
+      if (!customerInfo.phone) missing.push('Téléphone')
+      if (!customerInfo.addressLine) missing.push('Adresse (ligne)')
+      if (!customerInfo.department) missing.push('Département')
+      if (!customerInfo.city) missing.push('Ville')
+      if (!customerInfo.postalCode) missing.push('Code postal')
+      if (missing.length > 0) {
+        alert('Veuillez renseigner les champs obligatoires : ' + missing.join(', '))
+        setProcessing(false)
+        return
+      }
+
+      // --- 1. Mode Mock (si demandé) ---
       if (useMock) {
         try {
           const mockRes = await fetch('/api/mock-create-checkout-session', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ cart: payloadCart, customerInfo: { name, email, address } }),
+            body: JSON.stringify({ cart: payloadCart, customerInfo }),
           })
           const mockData = await mockRes.json()
           // Redirection directe vers la page de succès pour la simulation
@@ -62,7 +90,7 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
       const res = await fetch('/api/create-checkout-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cart: payloadCart, customerInfo: { name, email, address } }),
+        body: JSON.stringify({ cart: payloadCart, customerInfo }),
       })
 
       console.log('[checkout] API response status:', res.status)
@@ -117,9 +145,15 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
 
   return (
     <div className="mt-3">
-      <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Nom complet" value={name} onChange={(e) => setName(e.target.value)} />
-      <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Adresse (facultatif)" value={address} onChange={(e) => setAddress(e.target.value)} />
+      <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Nom complet *" value={name} onChange={(e) => setName(e.target.value)} />
+      <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Email *" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Téléphone *" value={phone} onChange={(e) => setPhone(e.target.value)} />
+      <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Adresse (ligne) *" value={addressLine} onChange={(e) => setAddressLine(e.target.value)} />
+      <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Département *" value={department} onChange={(e) => setDepartment(e.target.value)} />
+      <div className="flex gap-2">
+        <input className="flex-1 mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Ville *" value={city} onChange={(e) => setCity(e.target.value)} />
+        <input className="w-28 mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Code postal *" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} />
+      </div>
       <div className="text-sm text-gray-300 mb-2">Montant à payer: <strong>{cartTotal.toFixed(2)}€</strong></div>
       <button onClick={handleCheckout} disabled={processing} className="w-full bg-green-600 text-white py-2 rounded">
         {processing ? 'Redirection vers le paiement...' : 'Payer'}
