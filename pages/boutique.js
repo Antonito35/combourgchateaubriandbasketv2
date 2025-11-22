@@ -14,7 +14,6 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [addressLine, setAddressLine] = useState("")
-  const [department, setDepartment] = useState("")
   const [city, setCity] = useState("")
   const [postalCode, setPostalCode] = useState("")
   const [phone, setPhone] = useState("")
@@ -47,7 +46,6 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
         email: email.trim(),
         phone: phone.trim(),
         addressLine: addressLine.trim(),
-        department: department.trim(),
         city: city.trim(),
         postalCode: postalCode.trim(),
       }
@@ -57,7 +55,6 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
       if (!customerInfo.email) missing.push('Email')
       if (!customerInfo.phone) missing.push('Téléphone')
       if (!customerInfo.addressLine) missing.push('Adresse (ligne)')
-      if (!customerInfo.department) missing.push('Département')
       if (!customerInfo.city) missing.push('Ville')
       if (!customerInfo.postalCode) missing.push('Code postal')
       if (missing.length > 0) {
@@ -149,7 +146,6 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
       <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Email *" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
       <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Téléphone *" value={phone} onChange={(e) => setPhone(e.target.value)} />
       <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Adresse (ligne) *" value={addressLine} onChange={(e) => setAddressLine(e.target.value)} />
-      <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Département *" value={department} onChange={(e) => setDepartment(e.target.value)} />
       <div className="flex gap-2">
         <input className="flex-1 mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Ville *" value={city} onChange={(e) => setCity(e.target.value)} />
         <input className="w-28 mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Code postal *" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} />
@@ -181,7 +177,7 @@ const products = [
         "/images/img boutique/t-shirt coton/dos t-shirt logo coeur noir.png",
       ]
     }, category: "tshirt-coton" },
-  { id: 2, name: "T-shirt coton logo dos", price: 18, images: [
+  { id: 2, name: "T-shirt coton logo dos", price: 0.6, images: [
       "/images/img boutique/t-shirt coton/devant t-shirt logo dos blanc.png",
       "/images/img boutique/t-shirt coton/dos t-shirt logo dos blanc.png",
     ], colors: ["Blanc","Noir"], imagesByColor: {
