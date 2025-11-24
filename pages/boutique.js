@@ -177,7 +177,7 @@ const products = [
         "/images/img boutique/t-shirt coton/dos t-shirt logo coeur noir.png",
       ]
     }, category: "tshirt-coton" },
-  { id: 2, name: "T-shirt coton logo dos", price: 0.6, images: [
+  { id: 2, name: "T-shirt coton logo dos", price: 18, images: [
       "/images/img boutique/t-shirt coton/devant t-shirt logo dos blanc.png",
       "/images/img boutique/t-shirt coton/dos t-shirt logo dos blanc.png",
     ], colors: ["Blanc","Noir"], imagesByColor: {
