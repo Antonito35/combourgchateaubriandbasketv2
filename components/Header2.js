@@ -58,30 +58,29 @@ export default function Header() {
 
       {/* Menu mobile actif seulement sous 760px */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end md:hidden">
-          <div className="w-64 h-full p-6 shadow-md bg-transparent">
-            <div className="justify-between items-center mb-6">
-              <Link href="/">
+        <div className="fixed inset-0 z-50 flex justify-end md:hidden bg-black bg-opacity-60">
+          <div className="w-72 h-full p-6 shadow-lg bg-custom-blue">
+            <div className="flex justify-between items-center mb-8">
+              <Link href="/" onClick={() => setIsMenuOpen(false)}>
                 <Image
                   src="/images/logo.png"
                   alt="Logo du club"
-                  width={112}
-                  height={50}
+                  width={100}
+                  height={45}
                   style={{ height: "auto" }}
-                  className="mb-4"
                   priority
                 />
               </Link>
-              <button onClick={() => setIsMenuOpen(false)}>
-                <X className="h-6 w-6 text-white" />
+              <button onClick={() => setIsMenuOpen(false)} className="p-1">
+                <X className="h-7 w-7 text-white" />
               </button>
             </div>
-            <ul className="space-y-4">
+            <ul className="space-y-5">
               {navigation.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="block text-white font-medium"
+                    className="block text-white hover:text-gray-300 font-medium text-lg py-2 px-3 rounded hover:bg-gray-700 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
