@@ -1,4 +1,4 @@
 module.exports = {
-  siteUrl: 'https://mon-site.vercel.app',
+  siteUrl: 'https://combourgchateaubriandbasket.fr',
   generateRobotsTxt: true,
 }

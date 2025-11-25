@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://mon-site.vercel.app
+Host: https://combourgchateaubriandbasket.fr
 
 # Sitemaps
-Sitemap: https://mon-site.vercel.app/sitemap.xml
+Sitemap: https://combourgchateaubriandbasket.fr/sitemap.xml
