@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Kurale } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import Loader from "../components/Loader";
 import "../styles/globals.css";
 
@@ -22,6 +23,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <div className={kurale.variable}>
       {loading ? <Loader /> : <Component {...pageProps} />}
+      <Analytics />
     </div>
   );
 }
