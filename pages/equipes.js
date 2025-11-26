@@ -16,9 +16,13 @@ const teams = [
   { name: "U13 M2", image: "/images/U13M2.jpg" },
   { name: "U11 M1", image: "/images/U11M1.jpg" },
   { name: "U11 M2", image: "/images/U11M2.jpg" },
-  { name: "U9", image: "/images/U9.jpg" },
-  { name: "U7", image: "/images/U7.jpg" },
+
 ]
+
+const mixedTeams = [
+  { name: "U9 Mixte", image: "/images/U9.jpg" },
+  { name: "U7 Mixte", image: "/images/U7.jpg" },
+];
 
 const femaleTeams = [
   { name: "SF1", image: "/images/SF1.JPG" },
@@ -38,6 +42,20 @@ export default function Equipes() {
       <h2 className="text-3xl font-semibold mb-4">Équipes Masculines</h2>
       <div className="equipes-grid">
         {teams.map((team, index) => (
+          <div key={index} className="equipe" data-aos="flip-right" data-aos-offset="125">
+            <h3 className="text-xl font-semibold mb-2">Équipe {team.name}</h3>
+            <ImageZoom
+              src={team.image}
+              alt={`Équipe ${team.name}`}
+              className="w-full h-48 object-cover rounded-lg"
+            />
+          </div>
+        ))}
+      </div>
+
+      <h2 className="text-3xl font-semibold mb-4 mt-8">Équipes Mixtes</h2>
+      <div className="equipes-grid equipes-grid--left">
+        {mixedTeams.map((team, index) => (
           <div key={index} className="equipe" data-aos="flip-right" data-aos-offset="125">
             <h3 className="text-xl font-semibold mb-2">Équipe {team.name}</h3>
             <ImageZoom

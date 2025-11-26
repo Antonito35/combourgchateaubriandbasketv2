@@ -149,6 +149,29 @@ h3 {
   margin: 2rem 0;
 }
 
+/* Afficher les équipes mixtes côte à côte */
+.equipes-grid--left {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.equipes-grid--left .equipe {
+  flex: 0 1 300px; /* chaque carte occupe jusqu'à 300px */
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .equipes-grid--left {
+    justify-content: center;
+  }
+  .equipes-grid--left .equipe {
+    flex-basis: 100%;
+  }
+}
+
 .equipe,
 .membre,
 .produit {
