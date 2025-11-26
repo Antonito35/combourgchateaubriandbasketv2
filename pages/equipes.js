@@ -5,16 +5,16 @@ import ImageZoom from "@/components/ImageZoom";
 const teams = [
   { name: "SM1", image: "/images/SM1.jpg" },
   { name: "SM2", image: "/images/SM2.JPG" },
-  { name: "SM3", image: "/images/SM3.jpg" },
+  { name: "SM3", image: "/images/SM4.jpg" },
   { name: "SM4", image: "/images/SM4.jpg" },
   { name: "U18 M1", image: "/images/U18M1.jpeg" },
-  { name: "U18 M2", image: "/images/U18M2.jpg" },
+  { name: "U18 M2", image: "/images/U18M3.jpeg" },
   { name: "U18 M3", image: "/images/U18M3.jpg" },
   { name: "U15 M1", image: "/images/U15M1.JPG" },
-  { name: "U15 M2", image: "/images/U15M2.JPG" },
+  { name: "U15 M2", image: "/images/U15M1.JPG" },
   { name: "U13 M1", image: "/images/U13M1.jpg" },
   { name: "U13 M2", image: "/images/U13M2.jpg" },
-  { name: "U11 M1", image: "/images/U11M1.jpg" },
+  { name: "U11 M1", image: "/images/U11M2.jpg" },
   { name: "U11 M2", image: "/images/U11M2.jpg" },
 
 ]
@@ -26,12 +26,12 @@ const mixedTeams = [
 
 const femaleTeams = [
   { name: "SF1", image: "/images/SF1.JPG" },
-  { name: "SF2", image: "/images/SF2.JPG" },
+  { name: "SF2", image: "/images/SF2.jpg" },
   { name: "U18 F1", image: "/images/U18F1.JPG" },
-  { name: "U18 F2", image: "/images/U18F2.JPG" },
-  { name: "U15 F1", image: "/images/U15F.JPG" },
-  { name: "U13 F1", image: "/images/U13F.JPG" },
-  { name: "U11 F1", image: "/images/U11F1.png" },
+  { name: "U18 F2", image: "/images/U18F2.jpg" },
+  { name: "U15 F1", image: "/images/U15F.jpg" },
+  { name: "U13 F1", image: "/images/U13F.jpg" },
+  { name: "U11 F1", image: "/images/equipe_rond.jpg" },
 ]
 
 export default function Equipes() {
