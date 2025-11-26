@@ -31,7 +31,7 @@ const femaleTeams = [
   { name: "U18 F2", image: "/images/U18F2.JPG" },
   { name: "U15 F1", image: "/images/U15F.JPG" },
   { name: "U13 F1", image: "/images/U13F.JPG" },
-  { name: "U11 F1", image: "/images/U11F1.JPG" },
+  { name: "U11 F1", image: "/images/U11F1.png" },
 ]
 
 export default function Equipes() {
