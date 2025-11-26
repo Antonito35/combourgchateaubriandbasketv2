@@ -1,0 +1,57 @@
+0000000000000000000000000000000000000000 ffe599cc4a217cbc6894ed98b68a64b5ccd26da5 Antoine SIMON <antoinesimon646@gmail.com> 1759476240 +0200	clone: from https://github.com/antefix1412/site_combourg_basket_v4.git
+ffe599cc4a217cbc6894ed98b68a64b5ccd26da5 ffe599cc4a217cbc6894ed98b68a64b5ccd26da5 Antoine SIMON <antoinesimon646@gmail.com> 1759476251 +0200	checkout: moving from main to antoine
+ffe599cc4a217cbc6894ed98b68a64b5ccd26da5 ffe599cc4a217cbc6894ed98b68a64b5ccd26da5 Antoine SIMON <antoinesimon646@gmail.com> 1759476266 +0200	checkout: moving from antoine to main
+ffe599cc4a217cbc6894ed98b68a64b5ccd26da5 ffe599cc4a217cbc6894ed98b68a64b5ccd26da5 Antoine SIMON <antoinesimon646@gmail.com> 1759476295 +0200	checkout: moving from main to antoine
+ffe599cc4a217cbc6894ed98b68a64b5ccd26da5 49c3edb0e22bef0476690bd1d4fd19e65b924a94 Antoine SIMON <antoinesimon646@gmail.com> 1759476316 +0200	commit: modified: pages/boutique.js
+49c3edb0e22bef0476690bd1d4fd19e65b924a94 f8ea5f516d3669a3094fe22087d58aae9a7c6376 Antoine SIMON <antoinesimon646@gmail.com> 1759477100 +0200	commit: new file: public/images/ANTOINE SIMON.jpg
+f8ea5f516d3669a3094fe22087d58aae9a7c6376 5bc4be879798d99a555ce9d21a6d973889060155 Antoine SIMON <antoinesimon646@gmail.com> 1759478062 +0200	commit: modified: pages/organigramme.js
+5bc4be879798d99a555ce9d21a6d973889060155 a2743e3a63b644f67473ac78e2542c0a0b0ad668 Antoine SIMON <antoinesimon646@gmail.com> 1759478324 +0200	commit: modified: public/images/ANTOINE SIMON.jpg
+a2743e3a63b644f67473ac78e2542c0a0b0ad668 f2f5a07930f3b24c6640e2e442eeecef0e924152 Antoine SIMON <antoinesimon646@gmail.com> 1759478740 +0200	commit: modified: public/images/AXEL MORIN MARIE.jpg
+f2f5a07930f3b24c6640e2e442eeecef0e924152 5bef4022ac6c8a033c50dbd356df4c640a0166cc Antoine Simon <antoinesimon35270@gmail.com> 1762774988 +0100	commit: Premier envoi du site Combourg Chateaubriand Basket
+5bef4022ac6c8a033c50dbd356df4c640a0166cc 961d589db897cafbd512d9fad92fb321baea7b5a Antoine Simon <antoinesimon35270@gmail.com> 1762792488 +0100	commit: 1
+961d589db897cafbd512d9fad92fb321baea7b5a ffe599cc4a217cbc6894ed98b68a64b5ccd26da5 Antoine Simon <antoinesimon35270@gmail.com> 1762792738 +0100	checkout: moving from antoine to main
+ffe599cc4a217cbc6894ed98b68a64b5ccd26da5 961d589db897cafbd512d9fad92fb321baea7b5a Antoine Simon <antoinesimon35270@gmail.com> 1762792769 +0100	merge antoine: Fast-forward
+961d589db897cafbd512d9fad92fb321baea7b5a d5ea3b1d92b06728ae70657283f830b1b23e4191 Antoine Simon <antoinesimon35270@gmail.com> 1762794579 +0100	commit: ajout photo equipe
+d5ea3b1d92b06728ae70657283f830b1b23e4191 1db19e684ab12d8da376eba0fe8e8cc27f4612f7 Antoine Simon <antoinesimon35270@gmail.com> 1762795175 +0100	commit: ajout photo entrainement
+1db19e684ab12d8da376eba0fe8e8cc27f4612f7 ce8c250a1daa774c2eae01d168db40a32955d927 Antoine Simon <antoinesimon35270@gmail.com> 1762863800 +0100	commit: maj3
+ce8c250a1daa774c2eae01d168db40a32955d927 48e5953d0b3de4787c6e88d4f0ec7eb3f1659672 Antoine Simon <antoinesimon35270@gmail.com> 1762864741 +0100	commit: mise a jour css et changement nombre equipe
+48e5953d0b3de4787c6e88d4f0ec7eb3f1659672 5ee723eedd0e0f789eb2201f94167c9f98992d78 Antoine Simon <antoinesimon35270@gmail.com> 1762881868 +0100	commit: maj image planning des match du wk
+5ee723eedd0e0f789eb2201f94167c9f98992d78 89f5505dd7cfc30b263dec64d13c4b34b49a43b8 Antoine Simon <antoinesimon35270@gmail.com> 1762882099 +0100	commit: maj image planning des match du wk
+89f5505dd7cfc30b263dec64d13c4b34b49a43b8 63ca6e00caae61eec7af4defcc76116fa75fda9d Antoine Simon <antoinesimon35270@gmail.com> 1762893946 +0100	commit: CHANGEMENT BOUTIQUE
+63ca6e00caae61eec7af4defcc76116fa75fda9d 2bb411b2e3d7a5d04c774f4ce1b7b17b5798a6bc Antoine Simon <antoinesimon35270@gmail.com> 1762894525 +0100	commit: MODIF PANIER BOUTIQUE
+2bb411b2e3d7a5d04c774f4ce1b7b17b5798a6bc 90b361d7e2ada556fc7d2d57d7c28e53590ecfc2 Antoine Simon <antoinesimon35270@gmail.com> 1763061938 +0100	commit: ajout payement boutique
+90b361d7e2ada556fc7d2d57d7c28e53590ecfc2 f9d7aa48c6bae4e227631e3ce5409a753b532246 Antoine Simon <antoinesimon35270@gmail.com> 1763066323 +0100	commit (merge): ajout payement boutique2
+f9d7aa48c6bae4e227631e3ce5409a753b532246 0ff0922316f707704d430dfb0434d6925711f4da Antoine Simon <antoinesimon35270@gmail.com> 1763409901 +0100	commit: ajout photo sf2 et api stripe
+0ff0922316f707704d430dfb0434d6925711f4da acfbee6b78c0627972156a47412a7bee35250dff Antoine Simon <antoinesimon35270@gmail.com> 1763492010 +0100	commit: enlever bouton tester avec stripe et ajout api stripe Antoine perso
+acfbee6b78c0627972156a47412a7bee35250dff 1a19f576083190d4326599a7e517c4424a57d145 Antoine Simon <antoinesimon35270@gmail.com> 1763585444 +0100	commit: ajout api stripe Antoine perso
+1a19f576083190d4326599a7e517c4424a57d145 17ca03a9cb043d7e91ca0eeb770aa931caf54905 Antoine Simon <antoinesimon35270@gmail.com> 1763657204 +0100	commit: ajout api et modif boutique
+17ca03a9cb043d7e91ca0eeb770aa931caf54905 22607ef32b5df97d35afdd95e357955ca6435e0c Antoine Simon <antoinesimon35270@gmail.com> 1763662464 +0100	commit: modif organigramme
+22607ef32b5df97d35afdd95e357955ca6435e0c f9afab90ab71ac31413861e8a255151005e84ec7 Antoine Simon <antoinesimon35270@gmail.com> 1763759201 +0100	commit: modif photos articles boutique et prix
+f9afab90ab71ac31413861e8a255151005e84ec7 1abd8787b3f4461939f9984282b5b1e2337d5378 Antoine Simon <antoinesimon35270@gmail.com> 1763833088 +0100	commit: changement adresse mail et mdp env
+1abd8787b3f4461939f9984282b5b1e2337d5378 4741ef8d4da45afdab4694c11ed4eca9fd61deeb Antoine Simon <antoinesimon35270@gmail.com> 1763833237 +0100	commit: test payement
+4741ef8d4da45afdab4694c11ed4eca9fd61deeb be4237712a6528d35157bad20ddc1f906e34c365 Antoine Simon <antoinesimon35270@gmail.com> 1763833807 +0100	commit: test payement2
+be4237712a6528d35157bad20ddc1f906e34c365 60f55acce54abe2d1498d2f494eb0460374b1bd6 Antoine Simon <antoinesimon35270@gmail.com> 1763834396 +0100	commit: prix t-shirt
+60f55acce54abe2d1498d2f494eb0460374b1bd6 61d465621f2e3179af974cb9ff68ee78266314c1 Antoine Simon <antoinesimon35270@gmail.com> 1763834933 +0100	commit: changement formulaire de payement
+61d465621f2e3179af974cb9ff68ee78266314c1 5dd5e8aec44751cdf689cd25a4b93871223f1cce Antoine Simon <antoinesimon35270@gmail.com> 1763838169 +0100	commit: changement formulaire de payement2
+5dd5e8aec44751cdf689cd25a4b93871223f1cce fef2b51038a58ac4e72b25dee959198bd4ef542c Antoine Simon <antoinesimon35270@gmail.com> 1763892777 +0100	commit: ajout aplle pay et google pay
+fef2b51038a58ac4e72b25dee959198bd4ef542c 073b390733ed6c853e124ea5d553d3bcffcd9b6d Antoine Simon <antoinesimon35270@gmail.com> 1763893109 +0100	commit: ajout aplle pay et google pay2
+073b390733ed6c853e124ea5d553d3bcffcd9b6d 550eced2db608da3ec21fbab9993f2f59544f9db Antoine Simon <antoinesimon35270@gmail.com> 1763893296 +0100	commit: Add Apple Pay verification placeholder (replace with Stripe content)
+550eced2db608da3ec21fbab9993f2f59544f9db b07f43dadced1eda932a8744a86f48ecde6f1ad9 Antoine Simon <antoinesimon35270@gmail.com> 1763893621 +0100	commit: ajout aplle pay et google pay3
+b07f43dadced1eda932a8744a86f48ecde6f1ad9 0c53e5e34aa6e4d2d1c5677b78ebeda025ab370b Antoine Simon <antoinesimon35270@gmail.com> 1763893891 +0100	commit: ajout aplle pay et google pay4
+0c53e5e34aa6e4d2d1c5677b78ebeda025ab370b 5dd5e8aec44751cdf689cd25a4b93871223f1cce Antoine Simon <antoinesimon35270@gmail.com> 1763894151 +0100	reset: moving to 5dd5e8a
+5dd5e8aec44751cdf689cd25a4b93871223f1cce 5dd5e8aec44751cdf689cd25a4b93871223f1cce Antoine Simon <antoinesimon35270@gmail.com> 1763894324 +0100	checkout: moving from main to main
+5dd5e8aec44751cdf689cd25a4b93871223f1cce 0c53e5e34aa6e4d2d1c5677b78ebeda025ab370b Antoine Simon <antoinesimon35270@gmail.com> 1763894324 +0100	reset: moving to backup-before-rollback
+0c53e5e34aa6e4d2d1c5677b78ebeda025ab370b 5dd5e8aec44751cdf689cd25a4b93871223f1cce Antoine Simon <antoinesimon35270@gmail.com> 1763900659 +0100	reset: moving to 5dd5e8a
+5dd5e8aec44751cdf689cd25a4b93871223f1cce a1216d964926326fb2945982578cecc60f1a8e2f Antoine Simon <antoinesimon35270@gmail.com> 1763901062 +0100	commit: Trigger Vercel redeploy: align with origin/main (5dd5e8a)
+a1216d964926326fb2945982578cecc60f1a8e2f 04908fa44005a0f423614f9a230e89c65320eae1 Antoine Simon <antoinesimon35270@gmail.com> 1764014556 +0100	commit: Set price for product id 2 to 18€
+04908fa44005a0f423614f9a230e89c65320eae1 51b0c710e26007f8277f48c29ddabc9b54e1d955 Antoine Simon <antoinesimon35270@gmail.com> 1764091910 +0100	commit: Improve mobile menu visibility and layout for Header2
+51b0c710e26007f8277f48c29ddabc9b54e1d955 37a296cdce35261e6c249b1b101a8e4c88e125e5 Antoine Simon <antoinesimon35270@gmail.com> 1764092047 +0100	commit: Améliorer menu mobile et rendre planning cliquable/zoomable sur téléphone
+37a296cdce35261e6c249b1b101a8e4c88e125e5 953d15b5b04373f734a3691f773db3cfe5070a42 Antoine Simon <antoinesimon35270@gmail.com> 1764092244 +0100	commit: Activer Vercel Analytics
+953d15b5b04373f734a3691f773db3cfe5070a42 fda2065ffc03473a6cc401d420f4c84e17831f12 Antoine Simon <antoinesimon35270@gmail.com> 1764092543 +0100	commit: Ajouter fichier de vérification Google Search Console
+fda2065ffc03473a6cc401d420f4c84e17831f12 c74bc93b4736e086d00e5a8f7c6445c94edb6467 Antoine Simon <antoinesimon35270@gmail.com> 1764092719 +0100	commit: Optimiser SEO: ajouter mots-clés, JSON-LD et meta tags pour référencement Combourg Chateaubriand Basket
+c74bc93b4736e086d00e5a8f7c6445c94edb6467 c74bc93b4736e086d00e5a8f7c6445c94edb6467 Antoine Simon <antoinesimon35270@gmail.com> 1764094540 +0100	checkout: moving from main to ajout-match-22-novembre
+c74bc93b4736e086d00e5a8f7c6445c94edb6467 51e30612002b8c7b5272a4dc05b4f5a677c32e1f Antoine Simon <antoinesimon35270@gmail.com> 1764094540 +0100	commit: Ajout match 22 novembre
+51e30612002b8c7b5272a4dc05b4f5a677c32e1f c74bc93b4736e086d00e5a8f7c6445c94edb6467 Antoine Simon <antoinesimon35270@gmail.com> 1764094707 +0100	checkout: moving from ajout-match-22-novembre to main
+c74bc93b4736e086d00e5a8f7c6445c94edb6467 593b9566122b7e8629318fe47b3098b1c67422e5 Antoine Simon <antoinesimon35270@gmail.com> 1764094707 +0100	merge ajout-match-22-novembre: Merge made by the 'ort' strategy.
+593b9566122b7e8629318fe47b3098b1c67422e5 593b9566122b7e8629318fe47b3098b1c67422e5 Antoine Simon <antoinesimon35270@gmail.com> 1764094826 +0100	checkout: moving from main to main
+593b9566122b7e8629318fe47b3098b1c67422e5 07591d5a9a28ceca757066c7f810e11da4964fa9 Antoine Simon <antoinesimon35270@gmail.com> 1764095014 +0100	commit: ajout image match 22 novembre 2
