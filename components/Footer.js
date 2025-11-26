@@ -15,7 +15,8 @@ export default function Footer() {
           <Image src="/images/logo_facebook.png" alt="Facebook" width={16} height={16} style={{ height: "auto" }} />
         </a>
         <p className="text-sm">
-          &copy; {new Date().getFullYear()} Club de Basket. Tous droits réservés. Site développé par Antoine SIMON, Antoine LEMESLE et Ridwan
+          &copy; {new Date().getFullYear()} Club de Basket. Tous droits réservés. Site développé par Antoine SIMON, Antoine LEMESLE et Ridwan ABDOULKADER (étudiants en bachelor
+informatique)
         </p>
       </div>
     </footer>

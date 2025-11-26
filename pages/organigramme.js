@@ -3,16 +3,16 @@ import Image from "next/image"
 
 const members = [
   { name: "ERIC FEVRIER", role: "Président", image: "/images/ERIC FEVRIER.jpg" },
-  { name: "THEO TREMORIN.", role: "Vice Président et responsable sponsors", image: "/images/THEO TREMORIN.jpg" },
+  { name: "THEO TREMORIN.", role: "Vice Président et Responsable sponsors", image: "/images/THEO TREMORIN.jpg" },
   { name: "CELINE MORIN", role: "Trésorerie", image: "/images/CELINE MORIN.jpg" },
-  { name: "CHRISTOPHER", role: "Entrainer Professionel", image: "/images/CHRISTOPHER.jpg" },
+  { name: "CHRISTOPHER", role: "Entraineur professionnel", image: "/images/CHRISTOPHER.jpg" },
   { name: "TANGUY RICHARD", role: "Responsable technique", image: "/images/TANGUY RICHARD.jpg" },
-  { name: "CAROLE-ANN LOUVET", role: "Secretaria", image: "/images/CAROLE-ANN LOUVET.jpg" },
-  { name: "MORGANE GAUTIER", role: "Secretaria et planning", image: "/images/MORGANE GAUTIER.jpg" },
+  { name: "CAROLE-ANN LOUVET", role: "Secrétariat", image: "/images/CAROLE-ANN LOUVET.jpg" },
+  { name: "MORGANE GAUTIER", role: "Secrétariat et Planning", image: "/images/MORGANE GAUTIER.jpg" },
   { name: "AUDREY CITRE", role: "Planning et Communication", image: "/images/AUDREY CITRE.jpg" },
-  { name: "ANTOINE SIMON", role: "Communication", image: "/images/ANTOINE SIMON.jpg" },
-  { name: "ELISE VINOUSE", role: "Communication, restauration et Buvette", image: "/images/ELISE VINOUSE.jpg" },
-  { name: "TYMEO LEPRIZE", role: "Restauration et Buvette", image: "/images/TYMEO LEPRIZE.jpg" },
+  { name: "ANTOINE SIMON", role: "Communication et Responsable site web", image: "/images/ANTOINE SIMON.jpg" },
+  { name: "ELISE VINOUSE", role: "Communication, Restauration et Buvette", image: "/images/ELISE VINOUSE.jpg" },
+  { name: "TYMEO LEPRIZE", role: "Restauration, Buvette et Boutique", image: "/images/TYMEO LEPRIZE.jpg" },
   { name: "AXEL MORIN MARIE", role: "Restauration, Buvette et Evenement", image: "/images/AXEL MORIN MARIE.jpg" },
   { name: "JULIEN PICHON", role: "Evenement", image: "/images/JULIEN PICHON.jpg" },
 ]
