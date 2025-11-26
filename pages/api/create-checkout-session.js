@@ -59,6 +59,7 @@ export default async function handler(req, res) {
         customer_email: customerInfo?.email,
         metadata: {
           customerName: customerInfo?.name,
+          customerFirstName: customerInfo?.firstName,
           customerPhone: customerInfo?.phone,
           customerCity: customerInfo?.city,
           customerPostalCode: customerInfo?.postalCode,

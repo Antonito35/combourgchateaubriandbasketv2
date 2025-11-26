@@ -23,6 +23,7 @@ export default async function handler(req, res) {
 
       const customerEmail = session.customer_email
       const customerName = session.metadata.customerName
+      const customerFirstName = session.metadata.customerFirstName
       const customerPhone = session.metadata.customerPhone
       const customerCity = session.metadata.customerCity
       const customerPostalCode = session.metadata.customerPostalCode
@@ -82,7 +83,8 @@ export default async function handler(req, res) {
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h1 style="color: #2a4363;">Nouvelle commande reçue</h1>
-            <p><strong>Nom du client :</strong> ${customerName}</p>
+            <p><strong>Prénom du client :</strong> ${customerFirstName || ''}</p>
+            <p><strong>Nom du client :</strong> ${customerName || ''}</p>
             <p><strong>Email du client :</strong> ${customerEmail}</p>
             <p><strong>Téléphone du client :</strong> ${customerPhone || 'N/A'}</p>
             <p><strong>Adresse du client :</strong> ${customerAddress}</p>
