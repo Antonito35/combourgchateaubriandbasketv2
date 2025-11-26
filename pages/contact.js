@@ -6,7 +6,7 @@ export default function Contact() {
     <Layout title="Contact - Club de Basket Combourg">
       <h1 className="text-4xl font-bold mb-6">Contact</h1>
       <div className="contact-info bg-custom-gray rounded-lg p-8">
-        <h2 className="text-2xl font-semibold mb-4">Informations de contact</h2>
+        <h2 className="text-2xl font-semibold mb-4">Informations et contact</h2>
         <p>
           <strong>Email :</strong> lachateaubriandcombourgbasket@gmail.com
         </p>
