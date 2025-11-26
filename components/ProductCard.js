@@ -39,7 +39,7 @@ export default function ProductCard({ product, addToCart }) {
       return
     }
     if (!flocking || flocking.trim().length !== 2) {
-      alert("Le floquage (initiales) est obligatoire et doit contenir exactement 2 lettres.")
+      alert("Le flocage (initiales) est obligatoire et doit contenir exactement 2 lettres.")
       return
     }
     addToCart(product, color, size, flocking)
@@ -121,7 +121,7 @@ export default function ProductCard({ product, addToCart }) {
         ))}
       </select>
       <div className="mt-2">
-        <label className="block">Floquage (initiales, 2 lettres) — obligatoire :</label>
+        <label className="block">Flocage (initiales, 2 lettres) — obligatoire :</label>
         <input
           type="text"
           maxLength={2}
@@ -130,7 +130,7 @@ export default function ProductCard({ product, addToCart }) {
           className="w-full border rounded px-3 py-2 bg-transparent text-white border-gray-500 text-lg"
           placeholder="Ex: AB"
         />
-        <p className="text-sm mt-1">Floquage inclus — initiales obligatoires</p>
+        <p className="text-sm mt-1">Flocage inclus — initiales obligatoires</p>
       </div>
       <button
         onClick={handleAddToCart}

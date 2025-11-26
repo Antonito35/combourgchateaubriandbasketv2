@@ -12,6 +12,7 @@ import ProductCard from "../components/ProductCard";
 
 function CheckoutForm({ cart, cartTotal, useMock }) {
   const [name, setName] = useState("")
+  const [firstName, setFirstName] = useState("")
   const [email, setEmail] = useState("")
   const [addressLine, setAddressLine] = useState("")
   const [city, setCity] = useState("")
@@ -25,8 +26,8 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
       alert('Votre panier est vide.')
       return
     }
-    if (!name || !email) {
-      alert('Veuillez renseigner votre nom et votre email.')
+    if (!firstName || !name || !email) {
+      alert('Veuillez renseigner votre prénom, nom et votre email.')
       return
     }
 
@@ -42,7 +43,8 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
       }))
       // Build structured customer info and validate required fields
       const customerInfo = {
-        name: name.trim(),
+        name: `${firstName.trim()} ${name.trim()}`.trim(),
+        firstName: firstName.trim(),
         email: email.trim(),
         phone: phone.trim(),
         addressLine: addressLine.trim(),
@@ -51,6 +53,7 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
       }
 
       const missing = []
+      if (!customerInfo.firstName) missing.push('Prénom')
       if (!customerInfo.name) missing.push('Nom')
       if (!customerInfo.email) missing.push('Email')
       if (!customerInfo.phone) missing.push('Téléphone')
@@ -142,7 +145,8 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
 
   return (
     <div className="mt-3">
-      <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Nom complet *" value={name} onChange={(e) => setName(e.target.value)} />
+      <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Prénom *" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+      <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Nom *" value={name} onChange={(e) => setName(e.target.value)} />
       <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Email *" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
       <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Téléphone *" value={phone} onChange={(e) => setPhone(e.target.value)} />
       <input className="w-full mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Adresse (ligne) *" value={addressLine} onChange={(e) => setAddressLine(e.target.value)} />

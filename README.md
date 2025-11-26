@@ -37,7 +37,7 @@ Le site sera accessible dans votre navigateur à l'adresse suivante : **[http://
 * **Actualités et Événements** : Affichage des événements, matchs et dernières nouvelles du club.
 * **Équipes et Joueurs** : Gestion et présentation des différentes équipes et de leurs membres.
 * **Résultats et Classements** : Suivi des performances, scores et positionnement des équipes.
-* **Boutique en Ligne** : Plateforme d'achat d'articles personnalisés (avec options de floquage).
+* **Boutique en Ligne** : Plateforme d'achat d'articles personnalisés (avec options de flocage).
 * **Média** : Galerie photos et vidéos (images du terrain, des matchs, etc.).
 
 ---
