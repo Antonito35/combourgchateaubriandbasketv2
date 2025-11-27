@@ -18,6 +18,7 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
   const [city, setCity] = useState("")
   const [postalCode, setPostalCode] = useState("")
   const [phone, setPhone] = useState("")
+  const [cgvAccepted, setCgvAccepted] = useState(false)
   const [processing, setProcessing] = useState(false)
 
   const handleCheckout = async () => {
@@ -28,6 +29,10 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
     }
     if (!firstName || !name || !email) {
       alert('Veuillez renseigner votre prénom, nom et votre email.')
+      return
+    }
+    if (!cgvAccepted) {
+      alert('Vous devez accepter les Conditions Générales de Vente pour continuer.')
       return
     }
 
@@ -154,8 +159,30 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
         <input className="flex-1 mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Ville *" value={city} onChange={(e) => setCity(e.target.value)} />
         <input className="w-28 mb-2 p-2 rounded bg-transparent border border-gray-600 text-white" placeholder="Code postal *" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} />
       </div>
+      
+      <div className="mb-3 flex items-start gap-2">
+        <input 
+          type="checkbox" 
+          id="cgv-checkbox" 
+          checked={cgvAccepted} 
+          onChange={(e) => setCgvAccepted(e.target.checked)}
+          className="mt-1 w-4 h-4 cursor-pointer"
+        />
+        <label htmlFor="cgv-checkbox" className="text-sm text-gray-300 cursor-pointer">
+          J'accepte les{' '}
+          <a href="/cgv.html" target="_blank" className="text-orange-500 underline hover:text-orange-400">
+            Conditions Générales de Vente
+          </a>
+          {' '}et la{' '}
+          <a href="/politique-confidentialite.html" target="_blank" className="text-orange-500 underline hover:text-orange-400">
+            Politique de Confidentialité
+          </a>
+          {' '}*
+        </label>
+      </div>
+
       <div className="text-sm text-gray-300 mb-2">Montant à payer: <strong>{cartTotal.toFixed(2)}€</strong></div>
-      <button onClick={handleCheckout} disabled={processing} className="w-full bg-green-600 text-white py-2 rounded">
+      <button onClick={handleCheckout} disabled={processing || !cgvAccepted} className="w-full bg-green-600 text-white py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed">
         {processing ? 'Redirection vers le paiement...' : 'Payer'}
       </button>
     </div>
