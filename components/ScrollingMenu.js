@@ -8,6 +8,7 @@ const images = [
   "/images/maxivelo.png",
   "/images/orange_bleu.png",
   "/images/chat_toque.jpeg",
+  "/images/cour du temple.png",
 ]
 
 // Tableau d'URLs correspondant à chaque image
