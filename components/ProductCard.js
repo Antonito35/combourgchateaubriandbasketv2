@@ -114,7 +114,7 @@ export default function ProductCard({ product, addToCart }) {
         onChange={(e) => setSize(e.target.value)}
       >
         <option value="">Choisir une taille</option>
-        {(product.sizes || ["6-8 ans", "8-10 ans", "10-12 ans", "S", "M", "L", "XL"]).map((s) => (
+        {(product.sizes || ["6-8 ans", "8-10 ans", "10-12 ans", "S", "M", "L", "XL", "XXL"]).map((s) => (
           <option key={s} value={s}>
             {s}
           </option>
