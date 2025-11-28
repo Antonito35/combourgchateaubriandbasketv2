@@ -25,7 +25,7 @@ export default function Layout({ children, title = "Club de Basket Combourg" }) 
         <meta name="author" content="La Chateaubriand Combourg Basket" />
         <meta name="geo.region" content="FR-35" />
         <meta name="geo.placename" content="Combourg" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" href="/images/logo.png" />
         
         {/* JSON-LD pour le référencement local */}
         <script

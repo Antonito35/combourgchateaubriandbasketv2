@@ -38,7 +38,7 @@ export default function Header() {
       <header
         className={`fixed top-0 left-0 w-full bg-custom-gray z-50 shadow-md ease-in-out ${scrolled ? "py-12" : "py-4"}`}
       >
-      <link rel="icon" href="/images/logo.png" sizes="any"></link>
+      
         <div className="container mx-auto px-4 relative">
           {/* Logo */}
           <div
