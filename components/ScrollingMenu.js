@@ -8,7 +8,9 @@ const images = [
   "/images/maxivelo.png",
   "/images/orange_bleu.png",
   "/images/chat_toque.jpeg",
+  "/images/acotex.png",
   "/images/cour du temple.png",
+  
 ]
 
 // Tableau d'URLs correspondant à chaque image
@@ -19,7 +21,9 @@ const links = [
   "https://www.mcdonalds.fr",
   "https://www.maxivelo.fr/",
   "https://www.lorangebleue.fr",
-  ,
+  "https://www.facebook.com/lechat.toque.71/",
+  "https://www.acotex-quincaillerie.fr/",
+  "https://www.facebook.com/lacourdutemplecombourg/?locale=fr_FR"
 ]
 
 const ScrollingMenu = () => {
