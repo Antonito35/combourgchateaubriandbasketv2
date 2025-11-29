@@ -42,7 +42,9 @@ export default function ProductCard({ product, addToCart }) {
       alert("Le flocage (initiales) est obligatoire et doit contenir exactement 2 lettres.")
       return
     }
-    addToCart(product, color, size, flocking)
+    // Ajouter 6€ de supplément pour la taille 3XL
+    const finalPrice = size === "3XL" ? product.price + 6 : product.price
+    addToCart(product, color, size, flocking, finalPrice)
   }
 
   const prevImage = (e) => {
@@ -79,7 +81,7 @@ export default function ProductCard({ product, addToCart }) {
         </div>
 
         <h3 className="text-lg font-semibold mt-2 text-white">{product.name}</h3>
-        <p className="text-sm text-gray-200">Prix : {product.price}€</p>
+        <p className="text-sm text-gray-200">Prix : {product.price}€{size === "3XL" ? " + 6€ pour 3XL" : ""}</p>
       </div>
       <select
         className="mt-3 w-full p-3 bg-transparent text-white border border-gray-500 rounded text-base"
@@ -114,9 +116,9 @@ export default function ProductCard({ product, addToCart }) {
         onChange={(e) => setSize(e.target.value)}
       >
         <option value="">Choisir une taille</option>
-        {(product.sizes || ["6-8 ans", "8-10 ans", "10-12 ans", "S", "M", "L", "XL", "XXL"]).map((s) => (
+        {(product.sizes || ["6-8 ans", "8-10 ans", "10-12 ans", "S", "M", "L", "XL", "XXL", "3XL"]).map((s) => (
           <option key={s} value={s}>
-            {s}
+            {s}{s === "3XL" ? " +6€" : ""}
           </option>
         ))}
       </select>

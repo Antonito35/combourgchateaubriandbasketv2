@@ -360,7 +360,7 @@ export default function Boutique() {
   const [cartVisible, setCartVisible] = useState(false)
   const [useMock, setUseMock] = useState(false)
 
-  const addToCart = (product, color, size, flocking) => {
+  const addToCart = (product, color, size, flocking, customPrice = null) => {
     const key = `${product.id}::${color}::${size}::${flocking}`
     setCart((prev) => {
       const existing = prev.find((it) => it.key === key)
@@ -368,7 +368,8 @@ export default function Boutique() {
         return prev.map((it) => it.key === key ? { ...it, qty: it.qty + 1 } : it)
       }
       const image = (product.images && product.images[0]) || product.image || ''
-      return [...prev, { key, productId: product.id, name: product.name, color, size, flocking, qty: 1, price: product.price, image }]
+      const price = customPrice !== null ? customPrice : product.price
+      return [...prev, { key, productId: product.id, name: product.name, color, size, flocking, qty: 1, price: price, image }]
     })
     // show cart on mobile and scroll to the cart on the page
     setCartVisible(true)
