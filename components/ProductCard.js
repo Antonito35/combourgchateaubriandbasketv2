@@ -81,7 +81,7 @@ export default function ProductCard({ product, addToCart }) {
         </div>
 
         <h3 className="text-lg font-semibold mt-2 text-white">{product.name}</h3>
-        <p className="text-sm text-gray-200">Prix : {product.price}€{size === "3XL" ? " + 6€ pour 3XL" : ""}</p>
+        <p className="text-sm text-gray-200">Prix : {size === "3XL" ? `${product.price + 6}€ (${product.price}€+6€)` : `${product.price}€`}</p>
       </div>
       <select
         className="mt-3 w-full p-3 bg-transparent text-white border border-gray-500 rounded text-base"
