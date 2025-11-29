@@ -18,13 +18,17 @@ export default function Layout({ children, title = "Club de Basket Combourg" }) 
   return (
     <>
       <Head>
-        <title>{title}</title>
-        <meta name="description" content="Club de basket à Combourg - La Chateaubriand Combourg Basket, club de basketball depuis 1928. Inscriptions, équipes, planning des entrainements et boutique." />
-        <meta name="keywords" content="combourg chateaubriand basket, lachateaubriand combourg basket, lachateaubriand basket, club basket combourg, basket combourg, chateaubriand basket, basketball combourg, basket 35, club sportif combourg, entrainement basket combourg" />
+        <title>Combourg Chateaubriand Basket - Club de Basketball à Combourg</title>
+        <meta name="description" content="Combourg Chateaubriand Basket : club de basketball à Combourg depuis 1928. Découvrez nos équipes, nos entraînements, nos résultats et notre boutique en ligne." />
+        <meta name="keywords" content="Combourg Chateaubriand Basket, club basket Combourg, basketball Combourg, La Chateaubriand, basket Combourg 35, entraînement basketball, club sportif Combourg, équipes basket" />
         <meta name="google-site-verification" content="EWfsYEmYA9xPnfG1TX86g-n-0QP2zbGzfdw6dMRgwDQ" />
         <meta name="author" content="La Chateaubriand Combourg Basket" />
         <meta name="geo.region" content="FR-35" />
         <meta name="geo.placename" content="Combourg" />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="French" />
+        <meta name="revisit-after" content="7 days" />
+        <link rel="canonical" href="https://combourgchateaubriandbasket.fr" />
         <link rel="icon" type="image/png" href="/images/logo.png" />
         
         {/* JSON-LD pour le référencement local */}
