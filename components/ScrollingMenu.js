@@ -15,6 +15,12 @@ const images = [
   "/images/CAFÉ DE LA POSTE.jpg",
   "/images/CAPEOS CONSEILS.png",
   "/images/Chateaubriand Immo.png",
+  "/images/Coiffure Moranzoni Christian.jpg",
+  "/images/CRÉDIT MUTUEL.png",
+  "/images/CCE.png",
+  "/images/DENIS MATERIAUX.png",
+  "/images/Renault.png",
+  "/images/gitem.png"
   
 ]
 
@@ -34,6 +40,12 @@ const links = [
   "https://www.facebook.com/p/Caf%C3%A9-de-la-Poste-Combourg-61578333068973/",
   "https://www.capeos.fr/expertise-comptable-combourg",
   "https://www.cabinetchateaubriand.com/agence-chateaubriand/cabinet-chateaubriand-immobilier-combourg/",
+  "https://www.pagesjaunes.fr/pros/03144227",
+  "https://www.cmb.fr/reseau-bancaire-cooperatif/web/recherche-agence-credit-mutuel-de-bretagne/ille-et-vilaine/combourg/combourg-35270",
+  "https://www.cce35.fr/couvreur-dol-de-bretagne-combourg/",
+  "https://www.denismateriaux.com/nos-agences/agence-combourg",
+  "https://www.pagesjaunes.fr/pros/01695889",
+  "https://www.pagesjaunes.fr/pros/05846832"
   
 
 ]
