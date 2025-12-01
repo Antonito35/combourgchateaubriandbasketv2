@@ -20,7 +20,8 @@ const images = [
   "/images/CCE.png",
   "/images/DENIS MATERIAUX.png",
   "/images/Renault.png",
-  "/images/gitem.png"
+  "/images/gitem.png",
+  "/images/groupama.png"
   
 ]
 
@@ -45,7 +46,8 @@ const links = [
   "https://www.cce35.fr/couvreur-dol-de-bretagne-combourg/",
   "https://www.denismateriaux.com/nos-agences/agence-combourg",
   "https://www.pagesjaunes.fr/pros/01695889",
-  "https://www.pagesjaunes.fr/pros/05846832"
+  "https://www.pagesjaunes.fr/pros/05846832",
+  "https://agences.groupama.fr/assurance/loire-bretagne/agence-groupama-combourg-idLBR37085"
   
 
 ]
