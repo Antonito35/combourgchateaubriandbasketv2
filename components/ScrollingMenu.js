@@ -10,6 +10,11 @@ const images = [
   "/images/chat_toque.jpeg",
   "/images/acotex.png",
   "/images/cour du temple.png",
+  "/images/Atelier d'Architectes GBK.png",
+  "/images/axa.png",
+  "/images/CAFÉ DE LA POSTE.jpg",
+  "/images/CAPEOS CONSEILS.png",
+  "/images/Chateaubriand Immo.png",
   
 ]
 
@@ -23,7 +28,14 @@ const links = [
   "https://www.lorangebleue.fr",
   "https://www.facebook.com/lechat.toque.71/",
   "https://www.acotex-quincaillerie.fr/",
-  "https://www.facebook.com/lacourdutemplecombourg/?locale=fr_FR"
+  "https://www.facebook.com/lacourdutemplecombourg/?locale=fr_FR",
+  "https://www.aagbk.fr/",
+  "https://agence.axa.fr/distributeur/0002422804",
+  "https://www.facebook.com/p/Caf%C3%A9-de-la-Poste-Combourg-61578333068973/",
+  "https://www.capeos.fr/expertise-comptable-combourg",
+  "https://www.cabinetchateaubriand.com/agence-chateaubriand/cabinet-chateaubriand-immobilier-combourg/",
+  
+
 ]
 
 const ScrollingMenu = () => {
