@@ -39,6 +39,7 @@ export default function Layout({ children, title = "Club de Basket Combourg" }) 
         <meta name="twitter:description" content="Club de basketball à Combourg" />
         <link rel="canonical" href="https://combourgchateaubriandbasket.fr" />
         <link rel="icon" type="image/png" href="/images/logo.png" />
+        <link rel="icon" type="image/jpeg" href="/logo-redimensionne-taille-32x32.jpeg" />
         
         {/* JSON-LD pour le référencement local */}
         <script
