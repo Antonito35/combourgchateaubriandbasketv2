@@ -56,7 +56,7 @@ const ScrollingMenu = () => {
     <div className="scrollWrapper">
       <div className="scrollMenu">
         {images.map((src, index) => (
-          <div className="menuItem grayscale transition duration-300 hover:grayscale-0 cursor-pointer" key={index}>
+          <div className="menuItem transition duration-300 cursor-pointer" key={index}>
             <a href={links[index]} target="_blank" rel="noopener noreferrer">
               <img
                 src={src || "/placeholder.svg"}
@@ -69,7 +69,7 @@ const ScrollingMenu = () => {
         ))}
         {/* Duplique les images pour un effet de boucle infinie */}
         {images.map((src, index) => (
-          <div className="menuItem grayscale transition duration-300 hover:grayscale-0 cursor-pointer" key={index + images.length}>
+          <div className="menuItem transition duration-300 cursor-pointer" key={index + images.length}>
             <a href={links[index]} target="_blank" rel="noopener noreferrer">
               <img
                 src={src || "/placeholder.svg"}
