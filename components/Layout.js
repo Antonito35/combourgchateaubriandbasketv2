@@ -3,6 +3,7 @@
 import Head from "next/head"
 import Header from "./Header"
 import Footer from "./Footer"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useEffect } from "react"
 import AOS from "aos"
 import "aos/dist/aos.css"
@@ -74,6 +75,8 @@ export default function Layout({ children, title = "Club de Basket Combourg" }) 
         <main className="flex-grow container mx-auto px-4 py-8">{children}</main>
         <Footer />
       </div>
+      {/* Speed Insights (collecte des metrics de page) */}
+      <SpeedInsights />
     </>
   )
 }
