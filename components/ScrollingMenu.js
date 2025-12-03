@@ -3,11 +3,7 @@
 const images = [
   "/images/hyper_u.png",
   "/images/intermarche.png",
-  "/images/le_repaire.jpg",
   "/images/macdo.png",
-  "/images/maxivelo.png",
-  "/images/orange_bleu.png",
-  "/images/chat_toque.jpeg",
   "/images/acotex.png",
   "/images/cour du temple.png",
   "/images/Atelier d'Architectes GBK.png",
@@ -21,19 +17,18 @@ const images = [
   "/images/DENIS MATERIAUX.png",
   "/images/Renault.png",
   "/images/gitem.png",
-  "/images/groupama.png"
-  
+  "/images/groupama.png",
+  "/images/L'opticien.png",
+  "/images/Menuiserie Grinhard Frères.png",
+  "/images/PIZZA IN.png",
+  "/images/Rahuel Bois.png",
 ]
 
 // Tableau d'URLs correspondant à chaque image
 const links = [
   "https://www.magasins-u.com/hyperu",
   "https://www.intermarche.com",
-  "https://www.lerepaire35.fr/",
   "https://www.mcdonalds.fr",
-  "https://www.maxivelo.fr/",
-  "https://www.lorangebleue.fr",
-  "https://www.facebook.com/lechat.toque.71/",
   "https://www.acotex-quincaillerie.fr/",
   "https://www.facebook.com/lacourdutemplecombourg/?locale=fr_FR",
   "https://www.aagbk.fr/",
@@ -47,8 +42,12 @@ const links = [
   "https://www.denismateriaux.com/nos-agences/agence-combourg",
   "https://www.pagesjaunes.fr/pros/01695889",
   "https://www.pagesjaunes.fr/pros/05846832",
-  "https://agences.groupama.fr/assurance/loire-bretagne/agence-groupama-combourg-idLBR37085"
-  
+  "https://agences.groupama.fr/assurance/loire-bretagne/agence-groupama-combourg-idLBR37085",
+  "https://lopticiencombourg.com/",
+  "https://www.grinhard-freres.fr/",
+  "https://www.combourg-pizza.com/",
+  "https://rahuelbois.com/",
+
 
 ]
 
