@@ -29,7 +29,7 @@ export function ImageCarousel() {
       <div className="relative max-w-4xl w-full">
         <ImageZoom
           src={images[currentIndex]}
-          alt="carousel"
+          alt=""
           // Show the whole image inside the carousel (no crop) and make it slightly smaller to avoid visible pixelation
           className="w-full h-auto sm:max-h-[24vh] md:max-h-[30vh] lg:max-h-[36vh] object-contain rounded-lg shadow-md"
           onPrev={prevImage}
