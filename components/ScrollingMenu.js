@@ -18,7 +18,7 @@ const images = [
   "/images/Renault.png",
   "/images/gitem.png",
   "/images/groupama.png",
-  "/images/L'opticien.png",
+  "/images/Opticien.png",
   "/images/Menuiserie Grinhard Frères.png",
   "/images/PIZZA IN.png",
   "/images/Rahuel Bois.png",
