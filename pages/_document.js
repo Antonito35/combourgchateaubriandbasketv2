@@ -6,6 +6,10 @@ export default function Document() {
     <Html lang="fr" translate="no">
       <Head>
         <meta name="google" content="notranslate" />
+        {/* Favicon */}
+        <link rel="icon" type="image/png" href="/images/logo.png" />
+        <link rel="shortcut icon" href="/images/logo.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png" />
       </Head>
       <body className="antialiased notranslate">
         <Main />
