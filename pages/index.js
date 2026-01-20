@@ -31,6 +31,8 @@ export default function Home() {
       <Head>
         <title>Combourg Chateaubriand Basket - Club de Basketball depuis 1928</title>
         <meta name="description" content="La Chateaubriand Combourg Basket, club de basketball à Combourg (35) depuis 1928. Découvrez nos équipes, planning des entrainements, inscriptions et boutique officielle." />
+      
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       {/* Section Hero avec image de fond qui prend toute la page */}
