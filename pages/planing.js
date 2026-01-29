@@ -1,15 +1,34 @@
 import { useState } from "react"
 import Layout from "../components/Layout"
 import Image from "next/image"
-import { X } from "lucide-react"
+import { X, Download } from "lucide-react"
 
 export default function Contact() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleDownloadPlanning = () => {
+    const link = document.createElement('a')
+    link.href = '/images/planning 25-26.png'
+    link.download = 'Planning_Entrainements_2025-2026.png'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
 
   return (
     <Layout title="Planning des entrainements - Club de Basket Combourg">
       <h1 className="text-4xl font-bold mb-6">Le planning des entrainements</h1>
       <div className="contact-info bg-custom-gray rounded-lg p-8">
+        {/* Bouton de téléchargement */}
+        <div className="mb-6">
+          <button
+            onClick={handleDownloadPlanning}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg flex items-center gap-2 transition-colors"
+          >
+            <Download className="h-5 w-5" />
+            Télécharger le planning
+          </button>
+        </div>
         <div 
           className="cursor-pointer hover:opacity-90 transition-opacity"
           onClick={() => setIsModalOpen(true)}
