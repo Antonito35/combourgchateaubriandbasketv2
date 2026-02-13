@@ -3,11 +3,12 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import ImageZoom from "./ImageZoom";
 
 const images = [
-  "/images/match1.png",
-  "/images/match2.png",
-  "/images/match3.png",
-  "/images/match4.png",
-  "/images/match5.png",
+  "/images/bonne_vacances.png",
+ // "/images/match1.png",
+ // "/images/match2.png",
+  //"/images/match3.png",
+  //"/images/match4.png",
+ // "/images/match5.png",
 ];
 
 export function ImageCarousel() {
