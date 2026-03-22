@@ -1,7 +1,6 @@
 "use client"
 
 import Layout from "../components/Layout"
-import Image from "next/image"
 import ImageZoom from "@/components/ImageZoom"
 
 // Données des événements (à personnaliser selon vos besoins)
@@ -12,6 +11,15 @@ const eventsData = [
     date: "2026-02-15",
     dateDisplay: "13 février 2026",
     image: "/images/tournoi_des_familles.png",
+  },
+  {
+    id: 2,
+    title: "Repas du Basket",
+    date: "2026-04-05",
+    dateDisplay: "5 avril 2026",
+    image: "/images/repas basket.jpg",
+    qrcode: "/images/qr code repas du club.png",
+    inscriptionUrl: "https://www.helloasso.com/associations/la-chateaubriand-combourg-basket/evenements/repas-du-basket-1",
   }
 ]
 
@@ -31,7 +39,7 @@ export default function Evenements() {
         </div>
 
         {/* Liste des événements */}
-        <div className="flex justify-center mb-12">
+        <div className="flex flex-col items-center gap-8 mb-12">
           {sortedEvents.map((event, index) => (
             <div
               key={event.id}
@@ -52,11 +60,34 @@ export default function Evenements() {
               {/* Contenu */}
               <div className="p-6">
                 <h3 className="text-2xl font-bold mb-3 text-white">{event.title}</h3>
-                
-                <div className="flex items-center text-gray-300">
+
+                <div className="flex items-center text-gray-300 mb-4">
                   <span className="mr-2">📅</span>
                   <span className="text-lg">{event.dateDisplay}</span>
                 </div>
+
+                {/* QR Code + lien inscription */}
+                {event.qrcode && (
+                  <div className="flex flex-col items-center gap-4 mt-4">
+                    <p className="text-gray-300 text-center">Scannez le QR code ou cliquez sur le lien pour vous inscrire :</p>
+                    <div className="relative w-48 h-48 border-4 border-white rounded-lg overflow-hidden">
+                      <ImageZoom
+                        src={event.qrcode}
+                        alt="QR code inscription repas"
+                        className="w-full h-full object-contain"
+                        thumbnail={true}
+                      />
+                    </div>
+                    <a
+                      href={event.inscriptionUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block bg-white text-blue-900 px-8 py-3 rounded-xl font-bold text-lg hover:bg-gray-200 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                    >
+                      S&apos;inscrire en ligne
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           ))}
