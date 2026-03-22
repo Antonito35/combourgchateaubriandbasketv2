@@ -43,6 +43,7 @@ export default function Evenements() {
           {sortedEvents.map((event, index) => (
             <div
               key={event.id}
+              id={event.id === 2 ? "repas-basket" : undefined}
               className="bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl max-w-2xl w-full"
               data-aos="fade-up"
               data-aos-delay={index * 100}
