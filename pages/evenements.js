@@ -16,7 +16,7 @@ const eventsData = [
     id: 2,
     title: "Repas du Basket",
     date: "2026-04-05",
-    dateDisplay: "5 avril 2026",
+    dateDisplay: "25 avril 2026",
     image: "/images/repas basket.jpg",
     qrcode: "/images/qr code repas du club.png",
     inscriptionUrl: "https://www.helloasso.com/associations/la-chateaubriand-combourg-basket/evenements/repas-du-basket-1",
