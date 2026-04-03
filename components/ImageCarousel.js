@@ -8,7 +8,7 @@ const images = [
   "/images/match3.png",
   "/images/match4.png",
   "/images/match5.png",
-  "/images/match6.png",
+  //"/images/match6.png",
 ];
 
 export function ImageCarousel() {
