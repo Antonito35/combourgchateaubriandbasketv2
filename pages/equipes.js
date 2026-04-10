@@ -36,7 +36,7 @@ const femaleTeams = [
 
 export default function Equipes() {
   return (
-    <Layout title="Équipes - Club de Basket Combourg">
+    <Layout title="Nos équipes - Combourg Châteaubriand Basket" description="Découvrez toutes les équipes du club : seniors masculins, U18, U15, U13, U11 et équipes mixtes U9/U7. Basketball pour tous les âges à Combourg.">
       <h1 className="text-4xl font-bold mb-6">Photos d'équipes</h1>
 
       <h2 className="text-3xl font-semibold mb-4">Équipes Masculines</h2>

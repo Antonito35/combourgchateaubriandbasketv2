@@ -19,7 +19,7 @@ const members = [
 
 export default function Organigramme() {
   return (
-    <Layout title="Organigramme - Club de Basket Combourg">
+    <Layout title="Organigramme - Combourg Châteaubriand Basket" description="Découvrez les membres du bureau et les dirigeants du club de basketball Combourg Châteaubriand Basket : président, trésorier, entraîneurs et responsables.">
       <h1 className="text-4xl font-bold mb-6">Organigramme</h1>
       <div className="organigramme-grid">
         {members.map((member, index) => (

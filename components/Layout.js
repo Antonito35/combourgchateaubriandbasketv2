@@ -8,7 +8,7 @@ import { useEffect } from "react"
 import AOS from "aos"
 import "aos/dist/aos.css"
 
-export default function Layout({ children, title = "Club de Basket Combourg" }) {
+export default function Layout({ children, title = "Combourg Châteaubriand Basket - Club de Basketball depuis 1928", description = "Club de basketball à Combourg depuis 1928. Équipes, entraînements, boutique et actualités." }) {
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -19,8 +19,8 @@ export default function Layout({ children, title = "Club de Basket Combourg" }) 
   return (
     <>
       <Head>
-        <title>Combourg Chateaubriand Basket - Club de Basketball à Combourg</title>
-        <meta name="description" content="Combourg Chateaubriand Basket : club de basketball à Combourg depuis 1928. Découvrez nos équipes, nos entraînements, nos résultats et notre boutique en ligne." />
+        <title>{title}</title>
+        <meta name="description" content={description} />
         <meta name="keywords" content="Combourg Chateaubriand Basket, Chateaubriand Combourg Basket, La Chateaubriand Combourg Basket, Combourg Basket Site, site basket Combourg, site basketball Combourg, club basket Combourg, basketball Combourg, La Chateaubriand, basket Combourg 35, entraînement basketball, club sportif Combourg, équipes basket, Chateaubriand Basket Club, Combourg Basketball, club de basket Combourg, basketball club Combourg, Combourg basket club, basket Combourg Brittany, basketball Ille-et-Vilaine, club de basketball 35270, Combourg sports, basketball association Combourg, Chateaubriand basketball, basket Combourg France, club basket Bretagne, basketball Combourg Ille-et-Vilaine, entraînement basket Combourg, compétition basketball Combourg, ligue basket Combourg, Combourg athlétisme basket, basketball jeunesse Combourg, basket enfants Combourg, basketball adultes Combourg, Chateaubriand Combourg, club Chateaubriand, Chateaubriand sport, association basket Combourg, société basketball Combourg, centre basketball Combourg, salle basket Combourg, équipe basketball Combourg, championnat basket Combourg, ligue de basketball Combourg, basket loisir Combourg, basket compétition Combourg, école basket Combourg, formation basketball Combourg, académie basket Combourg, tournoi basketball Combourg, match basket Combourg, résultats basket Combourg, classement basketball Combourg, calendrier basket Combourg, horaires entraînement Combourg, planning basketball Combourg, inscriptions basket Combourg, adhésion basketball Combourg, site officiel basket Combourg, portail basketball Combourg, plateforme basket Combourg, web basket Combourg, online basketball Combourg" />
         <meta name="google-site-verification" content="EWfsYEmYA9xPnfG1TX86g-n-0QP2zbGzfdw6dMRgwDQ" />
         <meta name="author" content="La Chateaubriand Combourg Basket" />

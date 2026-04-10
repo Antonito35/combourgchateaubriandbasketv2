@@ -3,7 +3,7 @@ import Image from "next/image"
 
 export default function Contact() {
   return (
-    <Layout title="Contact - Club de Basket Combourg">
+    <Layout title="Contact - Combourg Châteaubriand Basket" description="Contactez le club de basketball Combourg Châteaubriand Basket. Email, téléphone, adresse et formulaire de contact. Avenue Waldmunchen, 35270 Combourg.">
       <h1 className="text-4xl font-bold mb-6">Contact</h1>
       <div className="contact-info bg-custom-gray rounded-lg p-8">
         <h2 className="text-2xl font-semibold mb-4">Informations et contact</h2>

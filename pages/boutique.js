@@ -403,7 +403,7 @@ export default function Boutique() {
   const filteredProducts = selectedCategory === "all" ? uniqueProducts : uniqueProducts.filter((p) => p.category === selectedCategory)
 
   return (
-    <Layout title="Boutique - Club de Basket Combourg">
+    <Layout title="Boutique - Combourg Châteaubriand Basket" description="Commandez les maillots et équipements officiels du club Combourg Châteaubriand Basket. Livraison disponible, paiement sécurisé.">
       <h1 className="text-4xl font-bold mb-6 text-center">Boutique</h1>
 
       <div className="w-full">

@@ -16,7 +16,7 @@ export default function Contact() {
   }
 
   return (
-    <Layout title="Planning des entrainements - Club de Basket Combourg">
+    <Layout title="Planning des entraînements - Combourg Châteaubriand Basket" description="Consultez le planning des entraînements et matchs du club de basketball Combourg Châteaubriand. Horaires et créneaux pour toutes les catégories.">
       <h1 className="text-4xl font-bold mb-6">Le planning des entrainements</h1>
       <div className="contact-info bg-custom-gray rounded-lg p-8">
         {/* Bouton de téléchargement */}

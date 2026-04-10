@@ -28,7 +28,7 @@ const sortedEvents = [...eventsData].sort((a, b) => new Date(a.date) - new Date(
 
 export default function Evenements() {
   return (
-    <Layout title="Événements - Club de Basket Combourg">
+    <Layout title="Événements - Combourg Châteaubriand Basket" description="Tous les événements du club de basketball Combourg Châteaubriand : tournois, repas annuel, soirées et animations. Inscrivez-vous en ligne.">
       <div className="max-w-7xl mx-auto px-4">
         {/* En-tête */}
         <div className="text-center mb-12" data-aos="fade-down">
