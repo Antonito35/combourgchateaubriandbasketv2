@@ -33,7 +33,10 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <div className={kurale.variable}>
-      {loading ? <Loader /> : <Component {...pageProps} />}
+      {loading && <Loader />}
+      <div style={{ visibility: loading ? "hidden" : "visible" }}>
+        <Component {...pageProps} />
+      </div>
       <Analytics />
 
       {/* Popup événement */}
