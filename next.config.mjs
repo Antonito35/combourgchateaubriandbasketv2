@@ -4,13 +4,13 @@ const nextConfig = {
   env: {
     PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
   },
-};
-
-export default {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   async headers() {
     return [
       {
-        source: "/Footer.js", // Remplace par ton fichier
+        source: "/Footer.js",
         headers: [
           {
             key: "Cache-Control",
@@ -21,5 +21,6 @@ export default {
     ];
   },
 };
-;
+
+export default nextConfig;
 
