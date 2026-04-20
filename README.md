@@ -50,16 +50,6 @@ Le site sera accessible dans votre navigateur à l'adresse suivante : **[http://
 
 ---
 
-## 🤝 Contribuer au Projet
-
-Les contributions sont les bienvenues ! Si vous souhaitez améliorer le site ou corriger un bug, veuillez suivre la procédure standard :
-
-* **Forkez** le dépôt.
-* Créez une nouvelle branche pour votre travail.
-* Effectuez vos modifications et faites un **commit clair**.
-* Ouvrez une **Pull Request** (PR) pour soumettre vos changements.
-
----
 
 ## 📄 Licence et Contact
 
