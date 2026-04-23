@@ -18,13 +18,20 @@ const eventsData = [
     date: "2026-04-05",
     dateDisplay: "25 avril 2026",
     image: "/images/repas basket.jpg",
-    qrcode: "/images/qr code repas du club.png",
-    inscriptionUrl: "https://www.helloasso.com/associations/la-chateaubriand-combourg-basket/evenements/repas-du-basket-1",
+    cancelled: true,
+  },
+  {
+    id: 3,
+    title: "Vide Grenier",
+    date: "2026-06-13",
+    dateDisplay: "13 juin 2026",
+    image: "/images/vide_grenier.jpeg",
+    inscriptionUrl: "https://www.helloasso.com/associations/la-chateaubriand-combourg-basket/evenements/braderie-du-13-06",
   }
 ]
 
 // Trier les événements par ordre chronologique (du plus proche au plus lointain)
-const sortedEvents = [...eventsData].sort((a, b) => new Date(a.date) - new Date(b.date))
+const sortedEvents = [...eventsData].sort((a, b) => new Date(b.date) - new Date(a.date))
 
 export default function Evenements() {
   return (
@@ -53,9 +60,20 @@ export default function Evenements() {
                 <ImageZoom
                   src={event.image}
                   alt={event.title}
-                  className="w-full h-full object-cover"
+                  className={`w-full h-full object-cover${event.cancelled ? " opacity-40" : ""}`}
                   thumbnail={true}
                 />
+                {event.cancelled && (
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="relative w-full h-full">
+                      <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom right, transparent calc(50% - 2px), #ef4444 calc(50% - 2px), #ef4444 calc(50% + 2px), transparent calc(50% + 2px))" }} />
+                      <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom left, transparent calc(50% - 2px), #ef4444 calc(50% - 2px), #ef4444 calc(50% + 2px), transparent calc(50% + 2px))" }} />
+                    </div>
+                    <span className="absolute bg-red-600 text-white font-bold text-xl px-6 py-2 rounded-lg shadow-lg tracking-wide uppercase">
+                      Annulé
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Contenu */}
@@ -68,17 +86,21 @@ export default function Evenements() {
                 </div>
 
                 {/* QR Code + lien inscription */}
-                {event.qrcode && (
+                {event.inscriptionUrl && (
                   <div className="flex flex-col items-center gap-4 mt-4">
-                    <p className="text-gray-300 text-center">Scannez le QR code ou cliquez sur le lien pour vous inscrire :</p>
-                    <div className="relative w-48 h-48 border-4 border-white rounded-lg overflow-hidden">
-                      <ImageZoom
-                        src={event.qrcode}
-                        alt="QR code inscription repas"
-                        className="w-full h-full object-contain"
-                        thumbnail={true}
-                      />
-                    </div>
+                    {event.qrcode && (
+                      <>
+                        <p className="text-gray-300 text-center">Scannez le QR code ou cliquez sur le lien pour vous inscrire :</p>
+                        <div className="relative w-48 h-48 border-4 border-white rounded-lg overflow-hidden">
+                          <ImageZoom
+                            src={event.qrcode}
+                            alt="QR code inscription repas"
+                            className="w-full h-full object-contain"
+                            thumbnail={true}
+                          />
+                        </div>
+                      </>
+                    )}
                     <a
                       href={event.inscriptionUrl}
                       target="_blank"

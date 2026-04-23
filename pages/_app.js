@@ -9,7 +9,7 @@ import Link from "next/link";
 const kurale = Kurale({
   weight: "400",
   subsets: ["latin"],
-  variable: "--font-kurale", // Définit une variable CSS pour Tailwind
+  variable: "--font-kurale",
 });
 
 function MyApp({ Component, pageProps }) {
@@ -19,15 +19,14 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-      // Afficher le popup une seule fois par session
-      if (!sessionStorage.getItem("popupSeen")) {
+      if (!sessionStorage.getItem("popupVideGrenierSeen")) {
         setTimeout(() => setShowPopup(true), 400);
       }
     }, 2000);
   }, []);
 
   const closePopup = () => {
-    sessionStorage.setItem("popupSeen", "true");
+    sessionStorage.setItem("popupVideGrenierSeen", "true");
     setShowPopup(false);
   };
 
@@ -39,7 +38,7 @@ function MyApp({ Component, pageProps }) {
       </div>
       <Analytics />
 
-      {/* Popup événement */}
+      {/* Popup Vide Grenier */}
       {showPopup && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
@@ -49,7 +48,6 @@ function MyApp({ Component, pageProps }) {
             className="bg-gray-900 border border-white/20 rounded-2xl shadow-2xl max-w-md w-full p-8 flex flex-col items-center gap-5 relative"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Bouton fermer */}
             <button
               onClick={closePopup}
               className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors text-2xl leading-none"
@@ -57,25 +55,21 @@ function MyApp({ Component, pageProps }) {
               ✕
             </button>
 
-            {/* Image */}
             <img
-              src="/images/repas basket.jpg"
-              alt="Repas du Basket"
+              src="/images/vide_grenier.jpeg"
+              alt="Vide Grenier"
               className="w-full rounded-xl object-cover max-h-52"
             />
 
-            {/* Texte */}
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-white mb-2">🍽️ Repas du Basket</h2>
+              <h2 className="text-2xl font-bold text-white mb-2">Vide Grenier</h2>
               <p className="text-gray-300 text-base leading-relaxed">
-                Le club organise son repas annuel ! Venez passer une soirée conviviale avec les membres du club.
-                Inscrivez-vous dès maintenant en ligne.
+                Le club organise son vide grenier le 13 juin 2026 ! Venez chiner ou réserver votre emplacement dès maintenant.
               </p>
             </div>
 
-            {/* Bouton */}
             <Link
-              href="/evenements#repas-basket"
+              href="/evenements"
               onClick={closePopup}
               className="inline-block bg-white text-blue-900 px-8 py-3 rounded-xl font-bold text-lg hover:bg-gray-200 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl"
             >
