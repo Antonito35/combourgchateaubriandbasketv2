@@ -76,7 +76,7 @@ export default async function handler(req, res) {
 
       const mailOptions = {
         from: `"Club de Basket Combourg" <${process.env.EMAIL_USER}>`,
-        to: process.env.EMAIL_USER || 'a.lemesle26@gmail.com',
+        to: process.env.EMAIL_USER || 'antoinesimon35270@gmail.com',
         // send a copy to the customer if we have their email
         cc: customerEmail || undefined,
         subject: "Nouvelle commande - Club de Basket Combourg",
