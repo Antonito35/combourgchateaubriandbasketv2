@@ -65,7 +65,7 @@ function MyApp({ Component, pageProps }) {
             <div className="text-center">
               <h2 className="text-2xl font-bold text-white mb-2">Forum de l&apos;association</h2>
               <p className="text-gray-300 text-base leading-relaxed">
-                Rendez-vous le 1er septembre 2026 à 18h30 pour découvrir les projets et les échanges de l&apos;association.
+                Rendez-vous le 5 septembre 2026 de 9h à 16h pour découvrir les projets et les échanges de l&apos;association.
               </p>
             </div>
 
