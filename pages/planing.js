@@ -8,8 +8,8 @@ export default function Contact() {
 
   const handleDownloadPlanning = () => {
     const link = document.createElement('a')
-    link.href = '/images/planning a venir.jpg'
-    link.download = 'Planning_Entrainements_A_Venir.jpg'
+    link.href = '/images/planning entrainement 26-27.jpg'
+    link.download = 'Planning_Entrainements_2026_2027.jpg'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -36,7 +36,7 @@ export default function Contact() {
           onKeyPress={(e) => e.key === 'Enter' && setIsModalOpen(true)}
         >
           <Image
-            src="/images/planning a venir.jpg"
+            src="/images/planning entrainement 26-27.jpg"
             alt="Planning des entrainements - Cliquez pour agrandir"
             width={1100}
             height={850}
@@ -64,7 +64,7 @@ export default function Contact() {
           </button>
           <div className="relative w-full h-full flex items-center justify-center">
             <Image
-              src="/images/planning a venir.jpg"
+              src="/images/planning entrainement 26-27.jpg"
               alt="Planning des entrainements"
               fill
               style={{ objectFit: "contain" }}
