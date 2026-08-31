@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Kurale } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import Link from "next/link";
 import Loader from "../components/Loader";
 import "../styles/globals.css";
-import Link from "next/link";
 
 // Importer la police Kurale
 const kurale = Kurale({
@@ -17,16 +17,18 @@ function MyApp({ Component, pageProps }) {
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setLoading(false);
-      if (!sessionStorage.getItem("popupVideGrenierSeen")) {
+      if (!sessionStorage.getItem("popupForumAssociationSeen")) {
         setTimeout(() => setShowPopup(true), 400);
       }
     }, 2000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const closePopup = () => {
-    sessionStorage.setItem("popupVideGrenierSeen", "true");
+    sessionStorage.setItem("popupForumAssociationSeen", "true");
     setShowPopup(false);
   };
 
@@ -38,7 +40,6 @@ function MyApp({ Component, pageProps }) {
       </div>
       <Analytics />
 
-      {/* Popup Vide Grenier */}
       {showPopup && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
@@ -56,15 +57,15 @@ function MyApp({ Component, pageProps }) {
             </button>
 
             <img
-              src="/images/vide_grenier.jpeg"
-              alt="Vide Grenier"
+              src="/images/forum association.jpeg"
+              alt="Forum de l'association"
               className="w-full rounded-xl object-cover max-h-52"
             />
 
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-white mb-2">Vide Grenier</h2>
+              <h2 className="text-2xl font-bold text-white mb-2">Forum de l&apos;association</h2>
               <p className="text-gray-300 text-base leading-relaxed">
-                Le club organise son vide grenier le 13 juin 2026 ! Venez chiner ou réserver votre emplacement dès maintenant.
+                Rendez-vous le 1er septembre 2026 à 18h30 pour découvrir les projets et les échanges de l&apos;association.
               </p>
             </div>
 

@@ -8,8 +8,8 @@ export default function Contact() {
 
   const handleDownloadPlanning = () => {
     const link = document.createElement('a')
-    link.href = '/images/planning 25-26.png'
-    link.download = 'Planning_Entrainements_2025-2026.png'
+    link.href = '/images/planning a venir.jpg'
+    link.download = 'Planning_Entrainements_A_Venir.jpg'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -18,8 +18,7 @@ export default function Contact() {
   return (
     <Layout title="Planning des entraînements - Combourg Châteaubriand Basket" description="Consultez le planning des entraînements et matchs du club de basketball Combourg Châteaubriand. Horaires et créneaux pour toutes les catégories.">
       <h1 className="text-4xl font-bold mb-6">Le planning des entrainements</h1>
-      <div className="contact-info bg-custom-gray rounded-lg p-8">
-        {/* Bouton de téléchargement */}
+      <div className="contact-info bg-custom-gray rounded-lg p-6 md:p-8 max-w-5xl mx-auto">
         <div className="mb-6">
           <button
             onClick={handleDownloadPlanning}
@@ -30,20 +29,19 @@ export default function Contact() {
           </button>
         </div>
         <div 
-          className="cursor-pointer hover:opacity-90 transition-opacity"
+          className="cursor-pointer hover:opacity-90 transition-opacity mx-auto max-w-2xl"
           onClick={() => setIsModalOpen(true)}
           role="button"
           tabIndex={0}
           onKeyPress={(e) => e.key === 'Enter' && setIsModalOpen(true)}
         >
           <Image
-            src="/images/planning 25-26.png"
+            src="/images/planning a venir.jpg"
             alt="Planning des entrainements - Cliquez pour agrandir"
-            width={400}
-            height={300}
-            style={{ height: "auto" }}
-            layout="responsive"
-            className="rounded-lg"
+            width={1100}
+            height={850}
+            style={{ height: "auto", maxHeight: "72vh" }}
+            className="rounded-lg object-contain mx-auto"
           />
           <p className="text-center text-sm text-gray-300 mt-3 md:hidden">
             📱 Tapez pour agrandir
@@ -66,7 +64,7 @@ export default function Contact() {
           </button>
           <div className="relative w-full h-full flex items-center justify-center">
             <Image
-              src="/images/planning 25-26.png"
+              src="/images/planning a venir.jpg"
               alt="Planning des entrainements"
               fill
               style={{ objectFit: "contain" }}
