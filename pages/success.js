@@ -10,13 +10,22 @@ export default function Success() {
 
   useEffect(() => {
     if (session_id) {
-      // Ici, vous pouvez appeler votre API pour envoyer l'e-mail de confirmation
+      // Filet de sécurité côté client : le webhook Stripe (pages/api/webhook.js)
+      // est désormais la source fiable pour l'envoi des e-mails. Cet appel est
+      // idempotent (sendOrderEmails ignore les doublons) donc il ne fait rien
+      // de mal si le webhook a déjà envoyé les e-mails.
       fetch("/api/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ sessionId: session_id }),
+      }).then((res) => {
+        if (!res.ok) {
+          console.error("Echec de l'envoi de l'e-mail de confirmation (fallback client)")
+        }
+      }).catch((err) => {
+        console.error("Echec de l'envoi de l'e-mail de confirmation (fallback client):", err)
       })
     }
   }, [session_id])

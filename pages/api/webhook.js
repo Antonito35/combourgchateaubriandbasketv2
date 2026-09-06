@@ -1,60 +1,60 @@
-const handleCheckout = async () => {
-    // ... (vérifications initiales: panier, nom, email) ...
+import Stripe from "stripe"
+import { buffer } from "micro"
+import { sendOrderEmails } from "../../utils/sendOrderEmails"
 
-    setProcessing(true)
-    try {
-      const payloadCart = cart.map((it) => ({
-        // ... logique de mapping du panier ...
-      }))
+// Stripe needs the raw request body to verify the webhook signature.
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+}
 
-      // 1. Logique Mock (laissez-la telle quelle, elle est correcte pour le test)
-      if (useMock) {
-        // ... Code Mock ...
-        return
-      }
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    res.setHeader("Allow", ["POST"])
+    res.status(405).end(`Method ${req.method} Not Allowed`)
+    return
+  }
 
-      // 2. Appel API Réel Stripe
-      const res = await fetch('/api/create-checkout-session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cart: payloadCart, customerInfo: { name, email, address } }),
-      })
+  const rawKey = process.env.STRIPE_SECRET_KEY || ""
+  const stripeSecret = rawKey.trim().replace(/^"|"$/g, "")
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
 
-      const data = await res.json()
-      
-      // 3. Gestion des erreurs de l'API : Arrêter ici si l'API échoue.
-      if (!res.ok || !data.id) {
-        console.error('create-checkout-session failed:', data)
-        alert(data.message || 'Erreur lors de la création de la session de paiement.')
-        setProcessing(false)
-        return
-      }
+  if (!stripeSecret) {
+    console.error("[webhook] STRIPE_SECRET_KEY not set in environment")
+    res.status(500).json({ message: "STRIPE_SECRET_KEY not set in environment" })
+    return
+  }
+  if (!webhookSecret) {
+    console.error("[webhook] STRIPE_WEBHOOK_SECRET not set in environment")
+    res.status(500).json({ message: "STRIPE_WEBHOOK_SECRET not set in environment" })
+    return
+  }
 
-      const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-      
-      // 4. Charger Stripe
-      const stripe = await loadStripe(publishableKey)
-      if (!stripe) {
-        alert('Erreur: Impossible de charger le service de paiement Stripe.')
-        setProcessing(false)
-        return
-      }
+  const stripe = new Stripe(stripeSecret)
+  const sig = req.headers["stripe-signature"]
 
-      // 5. Redirection vers Stripe
-      const result = await stripe.redirectToCheckout({ sessionId: data.id })
-      
-      // Si la redirection ÉCHOUÉ (ce qui est TRES rare)
-      if (result && result.error) {
-        console.error('stripe.redirectToCheckout error:', result.error)
-        alert('Erreur de redirection vers le paiement: ' + result.error.message)
-      }
+  let event
+  try {
+    const buf = await buffer(req)
+    event = stripe.webhooks.constructEvent(buf, sig, webhookSecret)
+  } catch (err) {
+    console.error("[webhook] Signature verification failed:", err.message)
+    res.status(400).send(`Webhook Error: ${err.message}`)
+    return
+  }
 
-    } catch (err) {
-      console.error(err)
-      alert('Erreur inattendue: ' + (err.message || err))
-      
-    } finally {
-      // Le traitement est terminé, que la redirection ait réussi ou échoué.
-      setProcessing(false)
-    }s
-  }
+  if (event.type === "checkout.session.completed") {
+    const session = event.data.object
+    try {
+      const result = await sendOrderEmails(session.id)
+      console.log(`[webhook] checkout.session.completed ${session.id}:`, result.alreadySent ? "already sent" : "emails sent")
+    } catch (err) {
+      // Log but still acknowledge the event so Stripe doesn't retry indefinitely
+      // for a mail-server issue; the failure is visible in the server logs.
+      console.error("[webhook] Failed to send order emails:", err)
+    }
+  }
+
+  res.status(200).json({ received: true })
+}
