@@ -195,7 +195,7 @@ function CheckoutForm({ cart, cartTotal, useMock }) {
 
 const products = [
   // T-shirts coton
-  { id: 1, name: "T-shirt coton logo coeur", price: 14, images: [
+  { id: 1, name: "T-shirt coton logo coeur", price: 0, images: [
       "/images/img boutique/t-shirt coton/devant t-shirt logo coeur blanc.png",
       "/images/img boutique/t-shirt coton/dos t-shirt logo coeur blanc.png",
     ], colors: ["Blanc","Noir"], imagesByColor: {
